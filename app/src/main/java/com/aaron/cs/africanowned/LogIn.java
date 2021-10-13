@@ -49,6 +49,7 @@ public class LogIn extends AppCompatActivity {
                 }
                 if(password.length() < 7) {
                     uPassword.setError("Password must be at least 7 characters long.");
+                    return;
                 }
 
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
