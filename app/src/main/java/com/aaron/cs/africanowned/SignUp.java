@@ -46,9 +46,14 @@ public class SignUp extends AppCompatActivity {
         uSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String fullName = uFullName.getText().toString().trim();
                 String email = uEmail.getText().toString().trim();
                 String password = uPassword.getText().toString().trim();
 
+                if(TextUtils.isEmpty(fullName)) {
+                    uFullName.setError("Full name is required.");
+                    return;
+                }
                 if(TextUtils.isEmpty(email)) {
                     uEmail.setError("Email is required.");
                     return;
@@ -59,6 +64,7 @@ public class SignUp extends AppCompatActivity {
                 }
                 if(password.length() < 7) {
                     uPassword.setError("Password must be at least 7 characters long.");
+                    return;
                 }
 
                 fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
