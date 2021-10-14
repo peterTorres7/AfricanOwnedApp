@@ -44,7 +44,6 @@
         android:ems="10"
         android:fontFamily="@font/abril_fatface"
         android:hint="@string/full_name"
-        android:hintTextColor="#795548"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:padding="10dp"
@@ -54,8 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createNewAccount"
-        app:layout_constraintVertical_bias="0.089999974"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.089999974" />
 
     <EditText
         android:id="@+id/email"
@@ -87,7 +85,6 @@
         android:ems="10"
         android:fontFamily="@font/abril_fatface"
         android:hint="@string/password"
-        android:inputType="textPersonName"
         android:minHeight="48dp"
         android:padding="10dp"
         android:textColorHint="@color/black"
