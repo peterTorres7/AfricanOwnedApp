@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUp extends AppCompatActivity {
 
-    EditText uFullName, uEmail, uPassword;
+    EditText uName, uEmail, uPassword;
     TextView uLoginButton;
     Button uSignUpButton;
+    ProgressBar progressBar;
     FirebaseAuth fAuth;
 
     @Override
@@ -30,12 +32,13 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        uFullName = findViewById(R.id.fullName);
+        uName = findViewById(R.id.Name);
         uEmail = findViewById(R.id.email);
         uPassword = findViewById(R.id.password);
-        uLoginButton = findViewById(R.id.logIn);
+        uLoginButton = findViewById(R.id.alreadyRegistered);
         uSignUpButton = findViewById(R.id.signUp);
 
+        progressBar = findViewById(R.id.progressBar);
         fAuth = FirebaseAuth.getInstance();
 
         if(fAuth.getCurrentUser() != null) {
@@ -46,12 +49,12 @@ public class SignUp extends AppCompatActivity {
         uSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fullName = uFullName.getText().toString().trim();
+                String fullName = uName.getText().toString().trim();
                 String email = uEmail.getText().toString().trim();
                 String password = uPassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(fullName)) {
-                    uFullName.setError("Full name is required.");
+                    uName.setError("Name is required.");
                     return;
                 }
                 if(TextUtils.isEmpty(email)) {
@@ -67,6 +70,8 @@ public class SignUp extends AppCompatActivity {
                     return;
                 }
 
+                progressBar.setVisibility(View.VISIBLE);
+
                 fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -74,11 +79,20 @@ public class SignUp extends AppCompatActivity {
                             Toast.makeText(SignUp.this, "User Created", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
-                            Toast.makeText(SignUp.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT);
+                            Toast.makeText(SignUp.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
             }
         });
+
+        uLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LogIn.class));
+            }
+        });
+
     }
 }

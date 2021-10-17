@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class LogIn extends AppCompatActivity {
     EditText uEmail, uPassword;
     Button uLoginButton;
     TextView uCreateButton;
+    ProgressBar progressBar;
     FirebaseAuth fAuth;
 
     @Override
@@ -30,8 +32,10 @@ public class LogIn extends AppCompatActivity {
 
         uEmail = findViewById(R.id.email);
         uPassword = findViewById(R.id.password);
+        progressBar = findViewById(R.id.progressBar2);
+        fAuth = FirebaseAuth.getInstance();
         uLoginButton = findViewById(R.id.logIn);
-        uCreateButton = findViewById(R.id.signUp);
+        uCreateButton = findViewById(R.id.alreadyRegistered);
 
         uLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +56,8 @@ public class LogIn extends AppCompatActivity {
                     return;
                 }
 
+                progressBar.setVisibility(View.VISIBLE);
+
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -59,10 +65,18 @@ public class LogIn extends AppCompatActivity {
                             Toast.makeText(LogIn.this, "Logged in!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
-                            Toast.makeText(LogIn.this, "Error!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogIn.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
+            }
+        });
+
+        uCreateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SignUp.class));
             }
         });
     }
