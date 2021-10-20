@@ -4,9 +4,21 @@
     <string name="create_new_account">Create New Account</string>
     <string name="create_account">Create Account</string>
     <string name="log_in">Log In</string>
+    <string name="listingtype">listingtype</string>
+
     <string name="password">Password</string>
     <string name="name">Name</string>
     <string name="sign_up">Sign Up</string>
     <string name="already_registered_login_here">Already Registered? Login Here</string>
     <string name="email">Email</string>
+    <string name="submitUrListing">submitUrListing</string>
+    <string name="Countery">Countery</string>
+    <string-array name="spinner_country_choices">
+        <item>Deafult Choice</item>
+        <item>item 1</item>
+        <item>item 2</item>
+        <item>item 3</item>
+        <item>item 4</item>
+        <item>item 5</item>
+    </string-array>
 </resources>
