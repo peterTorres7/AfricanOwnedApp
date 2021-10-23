@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,7 +31,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.add_listing){
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new PrimareyDetailFragment()).commit();
+
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new FirstPrimaryDetailFragment()).commit();
+
 
         }
     }
