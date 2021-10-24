@@ -31,7 +31,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LogIn extends AppCompatActivity {
     EditText uEmail, uPassword;
-    Button uLoginButton;
+    Button uLoginButton, uLogoutButton;
     TextView uCreateButton;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
@@ -51,6 +51,7 @@ public class LogIn extends AppCompatActivity {
         uLoginButton = findViewById(R.id.logIn);
         uCreateButton = findViewById(R.id.alreadyRegistered);
         googleSignInButton = findViewById(R.id.googleSignInButton);
+        uLogoutButton = findViewById(R.id.logOut);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -101,6 +102,14 @@ public class LogIn extends AppCompatActivity {
                 });
             }
         });
+
+//        uLogoutButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mGoogleSignInClient.signOut();
+//                Toast.makeText(LogIn.this, "Logged out!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         uCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +166,6 @@ public class LogIn extends AppCompatActivity {
         } catch (ApiException e) {
             Toast.makeText(LogIn.this, "Sign in failed!", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
-            FirebaseGoogleAuth(null);
         }
     }
 
@@ -168,7 +176,7 @@ public class LogIn extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LogIn.this, "Logged in with Google!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogIn.this, "Successful authentication!", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = fAuth.getCurrentUser();
                             updateUI(user);
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -191,7 +199,7 @@ public class LogIn extends AppCompatActivity {
             String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
 
-            Toast.makeText(LogIn.this, personName + personEmail, Toast.LENGTH_SHORT).show();
+            Toast.makeText(LogIn.this, "Hi " + personGivenName, Toast.LENGTH_SHORT).show();
         }
     }
 }
