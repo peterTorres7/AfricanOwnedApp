@@ -103,36 +103,13 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-//        uLogoutButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mGoogleSignInClient.signOut();
-//                Toast.makeText(LogIn.this, "Logged out!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         uCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), SignUp.class));
             }
         });
-
-//        requestGoogleSignIn();
-
-//        googleSignInButton.setOnClickListener(view -> {
-//            googleSignIn();
-//        });
     }
-
-//    private void requestGoogleSignIn() {
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id))
-//                .requestEmail()
-//                .build();
-//
-//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-//    }
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -146,15 +123,6 @@ public class LogIn extends AppCompatActivity {
         if(requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-
-//            try {
-//                // Google Sign In was successful, authenticate with Firebase
-//                GoogleSignInAccount account = task.getResult(ApiException.class);
-//                firebaseAuthWithGoogle(account.getIdToken());
-//            } catch (ApiException e) {
-//                Toast.makeText(LogIn.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                progressBar.setVisibility(View.GONE);
-//            }
         }
     }
 
