@@ -8,17 +8,28 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Spinner;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
+
 public class FirstPrimaryDetailFragment extends Fragment {
 
-    TextInputLayout taglinetext;
+    TextInputLayout taglinetext,dropdown;
     Button nextbtn;
     View view;
     CheckBox taglineCheck;
+
+    AutoCompleteTextView autocomplet;
+    String category;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,23 +53,39 @@ public class FirstPrimaryDetailFragment extends Fragment {
                 taglinetext.setVisibility(view.getVisibility());
 
         });
-       // nextbtn.setOnClickListener((OnClickListener) this);
+      //Create dropdown list for countery
+        dropdown=view.findViewById( R.id.textInputLayout2 );
+        autocomplet=view.findViewById( R.id.countery );
+
+        Locale[] listofCountery = Locale.getAvailableLocales();
+        ArrayList<String> countries = new ArrayList<String>();
+        for (Locale locale : listofCountery) {
+            String country = locale.getDisplayCountry();
+            if (country.trim().length() > 0 && !countries.contains(country)) {
+                countries.add(country);
+            }
+        }
+        Collections.sort(countries);
+        for (String country : countries) {
+            System.out.println(country);
+        }
+
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, countries);
+
+        countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the your spinner
+        autocomplet.setAdapter(countryAdapter);
+
 
         nextbtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  Fragment fragment = null;
 
-             //   replaceFragment(fragment);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.container, new PrimareyDetailFragment());
+                ft.replace(R.id.container, new BusinessAdressragment());
                 ft.commit();
             }
-
-
-
-
-
 
     });
         return view;
