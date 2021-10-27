@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.aaron.cs.africanowned.drawer_fragments.AboutUs;
 import com.aaron.cs.africanowned.drawer_fragments.AddListing;
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void logOut(View view) {
         FirebaseAuth.getInstance().signOut();
+        Toast.makeText(MainActivity.this, "Logged out!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(), LogIn.class));
         finish();
     }
