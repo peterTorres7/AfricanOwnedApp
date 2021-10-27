@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         //fragment call
         callFragment=findViewById(R.id.add_listing);
+
      //   callFragment.setOnClickListener(this);
+
       //  getSupportFragmentManager().beginTransaction().add(R.id.container,new PrimareyDetailFragment()).commit();
 
 
