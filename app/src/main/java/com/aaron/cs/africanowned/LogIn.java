@@ -3,6 +3,12 @@ package com.aaron.cs.africanowned;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,6 +33,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -38,6 +47,10 @@ public class LogIn extends AppCompatActivity {
     SignInButton googleSignInButton;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN = 1;
+    private CallbackManager mCallbackManager;
+    private FirebaseAuth mFirebaseAuth;
+    TextView textViewUser;
+    private static final String TAG = "FacebookAuthentication";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +65,31 @@ public class LogIn extends AppCompatActivity {
         uCreateButton = findViewById(R.id.alreadyRegistered);
         googleSignInButton = findViewById(R.id.googleSignInButton);
         uLogoutButton = findViewById(R.id.logOut);
+        LoginButton loginButton;
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        loginButton = findViewById(R.id.login_button);
+        mCallbackManager = CallbackManager.Factory.create();
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG,"onSuccess" + loginResult);
+                handleFacebookToken(loginResult.getAccessToken());
+
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(@NonNull FacebookException e) {
+
+            }
+        });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -137,6 +175,23 @@ public class LogIn extends AppCompatActivity {
         }
     }
 
+    private void handleFacebookToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookToken" + token);
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mFirebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Log.d(TAG, "Sign in with credential: successful");
+                    FirebaseUser user = mFirebaseAuth.getCurrentUser();
+
+                }else {
+
+                }
+            }
+        });
+    }
+
     private void FirebaseGoogleAuth(GoogleSignInAccount account) {
         AuthCredential authCredential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         fAuth.signInWithCredential(authCredential)
@@ -170,4 +225,17 @@ public class LogIn extends AppCompatActivity {
             Toast.makeText(LogIn.this, "Hi " + personGivenName, Toast.LENGTH_SHORT).show();
         }
     }
+
+/*    private void updateUI(FirebaseUser user) {
+        if (user != null){
+            textViewUser.setText(user.getDisplayName());
+            if(user.getPhotoUrl() != null) {
+                String photoURL = user.getPhotoUrl().toString();
+
+            }
+        }
+    }*/
+
+
+
 }

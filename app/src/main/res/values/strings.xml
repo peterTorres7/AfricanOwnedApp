@@ -11,6 +11,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="already_registered_login_here">Already Registered? Login Here</string>
     <string name="email">Email</string>
+    <string name="facebook_app_id">272290971474643</string>
+    <string name="fb_login_protocol_scheme">fb272290971474643</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="or">or</string>
