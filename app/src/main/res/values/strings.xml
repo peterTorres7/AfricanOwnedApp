@@ -59,6 +59,14 @@
     <string name="select_city">Select City</string>
     <string name="enter_phone">Enter Phone</string>
     <string name="website">Website</string>
+    <string name="allow_data_analytics">Allow Data Analytics</string>
+    <string name="notifications">On</string>
+    <string name="do_you_allow_sharing_of_data_analytics">Data will be used for marketing purposes</string>
+    <string name="notification_option">Notifications</string>
+    <string name="notification_off">Off</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="or">or</string>
 </resources>
