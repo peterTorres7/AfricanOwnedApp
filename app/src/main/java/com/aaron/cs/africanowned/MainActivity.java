@@ -25,7 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     Button callFragment;
 
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //fragment call
         callFragment=findViewById(R.id.add_listing);
-        callFragment.setOnClickListener(this);
+     //   callFragment.setOnClickListener(this);
       //  getSupportFragmentManager().beginTransaction().add(R.id.container,new PrimareyDetailFragment()).commit();
 
 
