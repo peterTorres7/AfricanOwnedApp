@@ -1,5 +1,6 @@
 package com.aaron.cs.africanowned.drawer_fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aaron.cs.africanowned.LogIn;
 import com.aaron.cs.africanowned.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +65,10 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    public void logOut(View view) {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getActivity().getApplicationContext(), LogIn.class));
     }
 }
