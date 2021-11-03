@@ -53,7 +53,7 @@ public class FirstPrimaryDetailFragment extends Fragment {
                 taglinetext.setVisibility(view.getVisibility());
 
         });
-      //Create dropdown list for countery
+        //Create dropdown list for countery
         dropdown=view.findViewById( R.id.textInputLayout2 );
         autocomplet=view.findViewById( R.id.countery );
 
@@ -87,8 +87,8 @@ public class FirstPrimaryDetailFragment extends Fragment {
                 ft.commit();
             }
 
-    });
+        });
         return view;
 
 
-}}
+    }}
