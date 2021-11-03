@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 viewIsAtHome = true;
                 break;
             case R.id.nav_listing:
-             fragment= new FirstPrimaryDetailFragment();
+          //   fragment= new FirstPrimaryDetailFragment();
                // fragment = new AddListing();
-           // fragment = new businessHouresFragment();
-             //  fragment = new SocilMediaFragment();
+          //  fragment = new businessHouresFragment();
+             //  fragment = new BusinessAdressragment ();
                 title = "Add Listing";
                 viewIsAtHome = false;
                 break;

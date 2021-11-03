@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,16 +28,10 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
     Button addBtn;
     View view;
     AppCompatSpinner getSocialMedia;
-    TextInputLayout getmediaAdress;
-     String smedia;
-
+    EditText getmediaAdress;
+    String smedia;
     private LinearLayout parentLayout;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +41,7 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
 
         parentLayout = ( LinearLayout ) view.findViewById( R.id.parentViwLayout );
         getSocialMedia = view.findViewById( R.id.socialMedia );
-        getmediaAdress = view.findViewById( socialMediaAdress );
+        getmediaAdress = view.findViewById(R.id.socialMediaAdress );
          addBtn = view.findViewById( R.id.addButton );
 
         addBtn.setOnClickListener(this);
@@ -68,18 +63,19 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view)
+    {
         addField();
     }
 
     private void addField() {
 
         View myview = getLayoutInflater().inflate( R.layout.soial_m_raw,null );
-        TextView nameMedia = (TextView)myview.findViewById( R.id.socialMedia );
-        TextView mediaAdress = (TextView) myview.findViewById( socialMediaAdress );
-       String name = getSocialMedia.getSelectedItem().toString();
+        TextView nameMedia = (TextView)myview.findViewById( R.id.media );
+        TextView mediaAdress = (TextView) myview.findViewById(R.id.mediaWeb );
+        String name = getSocialMedia.getSelectedItem().toString();
 
-        String address = getmediaAdress.getEditText().toString();
+        String address = getmediaAdress.getText().toString();
 
 
         if (name != null && address!=null)
@@ -87,7 +83,6 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
             nameMedia.setText( name );
             mediaAdress.setText( address  + "\n");
             parentLayout.addView( myview );
-
 
 
         }

@@ -58,11 +58,7 @@ public class businessHouresFragment extends Fragment implements OnClickListener 
     List<String> teamList = new ArrayList<>();
     //  ArrayList<Cricketer> cricketersList = new ArrayList<>();
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
 
-    }
 
     @SuppressLint("ResourceType")
     @Override
@@ -94,7 +90,7 @@ public class businessHouresFragment extends Fragment implements OnClickListener 
       populateEndDate(view );
 
       //next button
-        /*nextbtn.setOnClickListener( new View.OnClickListener() {
+        nextbtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -103,7 +99,7 @@ public class businessHouresFragment extends Fragment implements OnClickListener 
                 ft.commit();
             }
 
-        });*/
+        });
 //        getSelectedItem();
         return view;
 
