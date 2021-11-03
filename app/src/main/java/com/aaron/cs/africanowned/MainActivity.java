@@ -12,28 +12,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
-import android.widget.Toast;
-import com.aaron.cs.africanowned.drawer_fragments.HomeFragment;
+
 import com.aaron.cs.africanowned.drawer_fragments.AboutUs;
 import com.aaron.cs.africanowned.drawer_fragments.AddListing;
 import com.aaron.cs.africanowned.drawer_fragments.HomeFragment;
 import com.aaron.cs.africanowned.drawer_fragments.ProfileFragment;
 import com.aaron.cs.africanowned.drawer_fragments.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button callFragment;
-
-
 
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar t;
+
+
 
 
     private boolean viewIsAtHome;
@@ -42,14 +43,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //fragment call
-        callFragment=findViewById(R.id.add_listing);
-
-     //   callFragment.setOnClickListener(this);
-
-      //  getSupportFragmentManager().beginTransaction().add(R.id.container,new PrimareyDetailFragment()).commit();
-
 
         drawerLayout = findViewById(R.id.drawer_layout);
         t = findViewById(R.id.toolbar);
@@ -124,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void logOut(View view) {
         FirebaseAuth.getInstance().signOut();
-        Toast.makeText(MainActivity.this, "Logged out!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(), LogIn.class));
         finish();
     }
 
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -140,4 +133,5 @@ public class MainActivity extends AppCompatActivity {
             moveTaskToBack(true);
         }
     }
+
 }
