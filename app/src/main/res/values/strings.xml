@@ -139,7 +139,6 @@
     <string name="notification_off">Off</string>
 
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="or">or</string>
     <string name="open_hours">24 hours open</string>
@@ -155,4 +154,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="media_name">media_name</string>
     <string name="media_address">media_address</string>
+
+    <string name="social_media">Social Media</string>
+    <string name="frequently_asked_questions">FREQUENTLY ASKED QUESTIONS</string>
+    <string name="faq">FAQ</string>
+    <string name="answer">Answer</string>
+    <string name="add_new">Add New</string>
+    <string name="question">Question</string>
+    <string name="detail_describtion_abut_your_listing">Detail Describtion abut your listing</string>
+    <string name="more_info">MORE INFO.</string>
+
 </resources>

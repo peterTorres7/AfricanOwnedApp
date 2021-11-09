@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
@@ -29,6 +30,8 @@ public class FirstPrimaryDetailFragment extends Fragment {
 
     AutoCompleteTextView autocomplet;
     String category;
+
+
 
 
     @Override

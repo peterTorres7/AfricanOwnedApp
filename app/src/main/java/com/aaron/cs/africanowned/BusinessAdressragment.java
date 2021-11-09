@@ -34,7 +34,7 @@ public class BusinessAdressragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate( R.layout.fragment_business_adressragment, container, false );
 
-       nextbtn2 = view.findViewById( R.id.next2);
+        nextbtn2 = view.findViewById( R.id.next2);
         address1 = view.findViewById(R.id.address);
         log = view.findViewById(R.id.longitude);
         lat = view.findViewById(R.id.latitude);

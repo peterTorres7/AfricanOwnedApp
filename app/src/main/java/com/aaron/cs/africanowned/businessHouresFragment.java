@@ -106,38 +106,21 @@ public class businessHouresFragment extends Fragment implements OnClickListener 
     }
     @Override
     public void onClick(View view) {
-
         addField();
-
-
     }
-
-
-
-
    public void addField() {
-       // View myview = getLayoutInflater().inflate( R.layout.business_hours, null, false );
-      // View myview = View.inflate( getActivity(),R.layout.business_hours,null );
-
        View myview = getLayoutInflater().inflate( R.layout.business_hours,null );
-                TextView weekday = (TextView)myview.findViewById( R.id.textWeekDays );
-                TextView hours = (TextView) myview.findViewById( R.id.textBusinessHour );
-              ImageView closeButton = myview.findViewById( R.id.imageClose );
-
-
-
+               TextView weekday = (TextView)myview.findViewById( R.id.textWeekDays );
+               TextView hours = (TextView) myview.findViewById( R.id.textBusinessHour );
+               ImageView closeButton = myview.findViewById( R.id.imageClose );
         days = getweekDays.getSelectedItem().toString();
-
-       start = getStartHour.getSelectedItem().toString();
-
-       end = getEndHours.getSelectedItem().toString();
+        start = getStartHour.getSelectedItem().toString();
+        end = getEndHours.getSelectedItem().toString();
        if (days != null && start !=null && end !=null)
        {
            weekday.setText( days );
-          hours.setText( start + " -" + end  + "\n");
+           hours.setText( start + " -" + end  + "\n");
            parentLayout.addView( myview );
-           //hours.setText( "");
-
 
        }
          else if(hours24.isChecked()) {
@@ -165,11 +148,11 @@ public class businessHouresFragment extends Fragment implements OnClickListener 
         parentLayout.removeView( ( View ) v.getParent() );
     }
 
-    public void poplateWeekDays(View view) {
-
+    public void poplateWeekDays(View view)
+    {
         // Create an ArrayAdapter using the string array for Weekdays
         ArrayAdapter<CharSequence> adapterWeekdays = ArrayAdapter.createFromResource( view.getContext(),
-                R.array.spin_weekDays, android.R.layout.simple_list_item_1 );
+            R.array.spin_weekDays, android.R.layout.simple_list_item_1 );
         adapterWeekdays.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         // Apply the adapter to the spinner of weekdays
         getweekDays.setAdapter( adapterWeekdays );
@@ -180,19 +163,17 @@ public class businessHouresFragment extends Fragment implements OnClickListener 
 
         // Create an ArrayAdapter for start day
         ArrayAdapter<CharSequence> adapterStartHours = ArrayAdapter.createFromResource( view.getContext(),
-                R.array.begningHours, android.R.layout.simple_list_item_1 );
+        R.array.begningHours, android.R.layout.simple_list_item_1 );
         adapterStartHours.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
-// Apply the adapter to the spinner of weekdays
+        // Apply the adapter to the spinner of weekdays
         getStartHour.setAdapter( adapterStartHours );
     }
-
-
     public void populateEndDate(View view) {
         // Create an ArrayAdapter for End hour
         ArrayAdapter<CharSequence> adapterEndingHours = ArrayAdapter.createFromResource( view.getContext(),
                 R.array.endHours, android.R.layout.simple_list_item_1 );
         adapterEndingHours.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
-// Apply the adapter to the spinner of weekdays
+       // Apply the adapter to the spinner of weekdays
         getEndHours.setAdapter( adapterEndingHours );
     }
 
