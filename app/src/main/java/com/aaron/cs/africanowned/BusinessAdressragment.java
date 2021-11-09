@@ -2,6 +2,7 @@ package com.aaron.cs.africanowned;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
@@ -69,17 +70,15 @@ public class BusinessAdressragment extends Fragment {
                     }
             }
         });
-// on click event next fragment will opne
-        nextbtn2.setOnClickListener( new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
 
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.container, new businessHouresFragment());
-            ft.commit();
-        }
+        // on click event next fragment will opne
+        nextbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-    });
+            }
+        });
+
         return view;
 
 

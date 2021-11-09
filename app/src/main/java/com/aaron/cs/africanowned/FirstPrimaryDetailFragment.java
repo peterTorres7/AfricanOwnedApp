@@ -3,6 +3,7 @@ package com.aaron.cs.africanowned;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -13,7 +14,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.security.PrivateKey;
@@ -24,8 +27,7 @@ import java.util.Locale;
 public class FirstPrimaryDetailFragment extends Fragment {
 
     TextInputLayout taglinetext,dropdown;
-    Button nextbtn;
-    View view;
+    MaterialButton nextbtn;
     CheckBox taglineCheck;
 
     AutoCompleteTextView autocomplet;
@@ -45,15 +47,16 @@ public class FirstPrimaryDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_first_primary_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_first_primary_detail, container, false);
+
         nextbtn = view.findViewById(R.id.next);
         taglinetext = view.findViewById(R.id.tagline);
         taglinetext.setVisibility(View.GONE);
         taglineCheck = view.findViewById(R.id.taglineCheck);
 //On check box select it display the view
-        taglineCheck.setOnClickListener(view -> {
+        taglineCheck.setOnClickListener(view1 -> {
             if (taglineCheck.isChecked())
-                taglinetext.setVisibility(view.getVisibility());
+                taglinetext.setVisibility(view1.getVisibility());
 
         });
         //Create dropdown list for countery
@@ -81,14 +84,27 @@ public class FirstPrimaryDetailFragment extends Fragment {
         autocomplet.setAdapter(countryAdapter);
 
 
-        nextbtn.setOnClickListener( new View.OnClickListener() {
+
+     /*   nextbtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.container, new BusinessAdressragment());
                 ft.commit();
-            }
+            }*/
+
+
+        nextbtn.setOnClickListener(view2 -> {
+            Toast.makeText(getActivity().getApplicationContext(), "yes", Toast.LENGTH_LONG);
+//            FragmentManager fragManager = getParentFragmentManager();
+//            FragmentTransaction transaction = fragManager.beginTransaction();
+//
+//            BusinessAdressragment frg = new BusinessAdressragment();
+//            transaction.addToBackStack("xyz");
+//            transaction.hide(FirstPrimaryDetailFragment.this);
+//            transaction.add(R.id.business_fragment, frg);
+//            transaction.commit();
 
         });
         return view;
