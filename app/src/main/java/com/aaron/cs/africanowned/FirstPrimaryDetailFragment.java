@@ -85,9 +85,10 @@ public class FirstPrimaryDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.container, new BusinessAdressragment());
-                ft.commit();
+               /* FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frgment_container, new BusinessAdressragment());
+                ft.addToBackStack(null);
+                ft.commit()*/;
             }
 
         });

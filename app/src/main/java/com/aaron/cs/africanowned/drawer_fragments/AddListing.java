@@ -36,5 +36,7 @@ public class AddListing extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_add_listing, container, false);
         return v;
+
+
     }
 }

@@ -35,9 +35,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar t;
 
 
-
-
     private boolean viewIsAtHome;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_listing:
           //   fragment= new QuestionAndAnswerBlankFragment();
               // fragment = new AddListing();
-         fragment = new MoreInformationFragment();
-          //  fragment = new FrequentlyAQFragment ();
+         //fragment = new FirstPrimaryDetailFragment();
+           fragment = new FrequentlyAQFragment ();
                 title = "Add Listing";
                 viewIsAtHome = false;
                 break;
