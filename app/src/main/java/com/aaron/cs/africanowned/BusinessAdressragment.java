@@ -2,6 +2,7 @@ package com.aaron.cs.africanowned;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
@@ -38,7 +39,7 @@ public class BusinessAdressragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate( R.layout.fragment_business_adressragment, container, false );
 
-       nextbtn2 = view.findViewById( R.id.next2);
+        nextbtn2 = view.findViewById( R.id.next2);
         address1 = view.findViewById(R.id.address);
         log = view.findViewById(R.id.longitude);
         lat = view.findViewById(R.id.latitude);
@@ -73,17 +74,15 @@ public class BusinessAdressragment extends Fragment {
                     }
             }
         });
-// on click event next fragment will opne
-        nextbtn2.setOnClickListener( new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
 
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.container, new businessHouresFragment());
-            ft.commit();
-        }
+        // on click event next fragment will opne
+        nextbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-    });
+            }
+        });
+
         return view;
 
 
