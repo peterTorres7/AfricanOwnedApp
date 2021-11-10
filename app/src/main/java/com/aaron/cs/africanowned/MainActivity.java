@@ -75,10 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 viewIsAtHome = true;
                 break;
             case R.id.nav_listing:
-          //   fragment= new QuestionAndAnswerBlankFragment();
-              // fragment = new AddListing();
-         fragment = new MoreInformationFragment();
-          //  fragment = new FrequentlyAQFragment ();
+                fragment = new AddListing();
                 title = "Add Listing";
                 viewIsAtHome = false;
                 break;
