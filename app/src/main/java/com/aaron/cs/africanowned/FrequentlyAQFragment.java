@@ -3,6 +3,7 @@ package com.aaron.cs.africanowned;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +29,12 @@ public class FrequentlyAQFragment extends Fragment {
 
         add = view.findViewById( R.id.addButton );nextButn.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                                             /*FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                             ft.replace(R.id.container, new BusinessAdressragment());
-                                             ft.commit();  */
+
+            public void onClick(View view) {
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, new MoreInformationFragment());
+                ft.commit();
             }
         } );
 

@@ -83,23 +83,26 @@ public class businessHouresFragment extends Fragment implements OnClickListener 
         getEndHours = view.findViewById( R.id.endingHr );
         hours24 = view.findViewById( R.id.hours24 );
         addBtn = view.findViewById( R.id.addButton );
+        nextbtn=view.findViewById( R.id.next );
 
        addBtn.setOnClickListener(this);
        poplateWeekDays( view );
       poplateStartDate( view );
       populateEndDate(view );
-
-      //next button
         nextbtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.container, new SocilMediaFragment());
+                ft.replace(R.id.frame, new SocilMediaFragment());
+                ft.addToBackStack(null);
                 ft.commit();
             }
 
         });
+
+      //next button
+
 //        getSelectedItem();
         return view;
 

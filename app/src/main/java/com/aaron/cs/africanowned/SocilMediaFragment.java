@@ -52,9 +52,9 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
             @Override
             public void onClick(View view) {
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.container, new MoreInformationFragment());
-                ft.commit();
+               /* FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, new FrequentlyAQFragment());
+                ft.commit();*/
             }
 
         });

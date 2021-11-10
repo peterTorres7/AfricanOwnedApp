@@ -75,7 +75,8 @@ public class BusinessAdressragment extends Fragment {
         public void onClick(View view) {
 
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.container, new businessHouresFragment());
+            ft.replace(R.id.frame, new FrequentlyAQFragment());
+            ft.addToBackStack(null);
             ft.commit();
         }
 
