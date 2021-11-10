@@ -2,6 +2,8 @@ package com.aaron.cs.africanowned.drawer_fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aaron.cs.africanowned.R;
+
+import mehdi.sakout.aboutpage.AboutPage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,12 +63,24 @@ public class AboutUs extends Fragment {
 
     }
 
+
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_us, container, false);
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return new AboutPage(getContext())
+                .isRTL(false)
+                .setDescription(getString(R.string.app_description))
+                //.addItem(new VersionElement())
+                .addGroup(getString(R.string.application_information_group))
+                .addFacebook(getString(R.string.page_id))
+                .addTwitter(getString(R.string.page_id))
+                .addYoutube(getString(R.string.page_id))
+                .addPlayStore(getString(R.string.page_id))
+                .addInstagram(getString(R.string.page_id))
+                .addGroup(getString(R.string.contact_group))
+                .addEmail("us@example.com", "Email")
+                .create();
+    }}
 
 
-}
