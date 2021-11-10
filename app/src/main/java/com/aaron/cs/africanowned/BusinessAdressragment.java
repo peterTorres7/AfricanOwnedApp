@@ -25,7 +25,11 @@ public class BusinessAdressragment extends Fragment {
     Button nextbtn2;
     View view;
 //Button continue;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
