@@ -141,6 +141,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="or">or</string>
+
     <string name="open_hours">24 hours open</string>
     <string name="week_days">Week Days</string>
     <string name="business_hour">Business Hour</string>
@@ -163,5 +164,8 @@
     <string name="question">Question</string>
     <string name="detail_describtion_abut_your_listing">Detail Describtion abut your listing</string>
     <string name="more_info">MORE INFO.</string>
+
+
+    <string name="phone">Phone</string>
 
 </resources>
