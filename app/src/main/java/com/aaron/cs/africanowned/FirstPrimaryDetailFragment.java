@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
@@ -32,8 +31,6 @@ public class FirstPrimaryDetailFragment extends Fragment {
 
     AutoCompleteTextView autocomplet;
     String category;
-
-
 
 
     @Override
@@ -59,7 +56,7 @@ public class FirstPrimaryDetailFragment extends Fragment {
                 taglinetext.setVisibility(view1.getVisibility());
 
         });
-        //Create dropdown list for countery
+      //Create dropdown list for countery
         dropdown=view.findViewById( R.id.textInputLayout2 );
         autocomplet=view.findViewById( R.id.countery );
 
@@ -84,17 +81,6 @@ public class FirstPrimaryDetailFragment extends Fragment {
         autocomplet.setAdapter(countryAdapter);
 
 
-
-     /*   nextbtn.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.container, new BusinessAdressragment());
-                ft.commit();
-            }*/
-
-
         nextbtn.setOnClickListener(view2 -> {
             Toast.makeText(getActivity().getApplicationContext(), "yes", Toast.LENGTH_LONG);
 //            FragmentManager fragManager = getParentFragmentManager();
@@ -105,9 +91,8 @@ public class FirstPrimaryDetailFragment extends Fragment {
 //            transaction.hide(FirstPrimaryDetailFragment.this);
 //            transaction.add(R.id.business_fragment, frg);
 //            transaction.commit();
-
         });
         return view;
 
 
-    }}
+}}
