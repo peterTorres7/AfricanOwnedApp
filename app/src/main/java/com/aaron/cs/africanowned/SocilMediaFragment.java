@@ -44,17 +44,16 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
         getSocialMedia = view.findViewById( R.id.socialMedia );
         getmediaAdress = view.findViewById(R.id.socialMediaAdress );
         addBtn = view.findViewById( R.id.addButton );
-        nextButn=view.findViewById(R.id.next);
-
         addBtn.setOnClickListener(this);
         poplateSocialMedia( view );
-        nextButn.setOnClickListener( new View.OnClickListener() {
+        nextButn=view.findViewById(R.id.nextBUtn);
+       nextButn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-               /* FragmentTransaction ft = getFragmentManager().beginTransaction();
+               FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new FrequentlyAQFragment());
-                ft.commit();*/
+                ft.commit();
             }
 
         });

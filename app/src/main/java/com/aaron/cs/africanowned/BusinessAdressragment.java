@@ -19,6 +19,8 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Arrays;
+
 public class BusinessAdressragment extends Fragment {
 
     TextInputLayout address1,address2,lat,log;
@@ -44,9 +46,9 @@ public class BusinessAdressragment extends Fragment {
         lat = view.findViewById(R.id.latitude);
         address2= view.findViewById(R.id.custom);
         address1.setVisibility(View.GONE);
-        address2.setVisibility(view.GONE);
-        lat.setVisibility(view.GONE);
-        log.setVisibility(view.GONE);
+        for (TextInputLayout textInputLayout : Arrays.asList( address2, lat, log )) {
+            textInputLayout.setVisibility( View.GONE );
+        }
 
 //Toogle buttons
         MaterialButtonToggleGroup toggle = view.findViewById(R.id.togleGroupButton);
@@ -61,8 +63,8 @@ public class BusinessAdressragment extends Fragment {
                 if (group.getCheckedButtonId() == R.id.searchByGoogle) {
                     address1.setVisibility( view.getVisibility() );
                     address2.setVisibility( View.GONE );
-                    lat.setVisibility(view.GONE);
-                    log.setVisibility(view.GONE);
+                    lat.setVisibility( View.GONE );
+                    log.setVisibility( View.GONE );
 
                 } else
                     if (group.getCheckedButtonId() == R.id.manualCoordinates) {
@@ -79,7 +81,7 @@ public class BusinessAdressragment extends Fragment {
         public void onClick(View view) {
 
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.frame, new FrequentlyAQFragment());
+            ft.replace(R.id.frame, new businessHouresFragment());
             ft.addToBackStack(null);
             ft.commit();
         }

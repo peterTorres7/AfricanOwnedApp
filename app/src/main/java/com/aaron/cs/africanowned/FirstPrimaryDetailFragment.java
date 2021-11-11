@@ -1,25 +1,19 @@
 package com.aaron.cs.africanowned;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Spinner;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
@@ -31,9 +25,6 @@ public class FirstPrimaryDetailFragment extends Fragment {
     CheckBox taglineCheck;
 
     AutoCompleteTextView autocomplet;
-    String category;
-
-
 
 
     @Override
@@ -64,7 +55,7 @@ public class FirstPrimaryDetailFragment extends Fragment {
         autocomplet=view.findViewById( R.id.countery );
 
         Locale[] listofCountery = Locale.getAvailableLocales();
-        ArrayList<String> countries = new ArrayList<String>();
+        ArrayList<String> countries = new ArrayList<>();
         for (Locale locale : listofCountery) {
             String country = locale.getDisplayCountry();
             if (country.trim().length() > 0 && !countries.contains(country)) {
@@ -76,8 +67,8 @@ public class FirstPrimaryDetailFragment extends Fragment {
             System.out.println(country);
         }
 
-        ArrayAdapter<String> countryAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, countries);
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>( getActivity(),
+                android.R.layout.simple_spinner_item, countries );
 
         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the your spinner
@@ -85,7 +76,7 @@ public class FirstPrimaryDetailFragment extends Fragment {
 
 
 
-     /*   nextbtn.setOnClickListener( new View.OnClickListener() {
+      nextbtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -93,19 +84,11 @@ public class FirstPrimaryDetailFragment extends Fragment {
                 ft.replace(R.id.frame, new BusinessAdressragment());
                 ft.addToBackStack(null);
                 ft.commit();
-            }*/
+            }
 
 
-        nextbtn.setOnClickListener(view2 -> {
-            Toast.makeText(getActivity().getApplicationContext(), "yes", Toast.LENGTH_LONG);
-//            FragmentManager fragManager = getParentFragmentManager();
-//            FragmentTransaction transaction = fragManager.beginTransaction();
-//
-//            BusinessAdressragment frg = new BusinessAdressragment();
-//            transaction.addToBackStack("xyz");
-//            transaction.hide(FirstPrimaryDetailFragment.this);
-//            transaction.add(R.id.business_fragment, frg);
-//            transaction.commit();
+
+
 
         });
         return view;
