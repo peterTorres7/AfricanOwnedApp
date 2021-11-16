@@ -4,7 +4,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +25,11 @@ import java.util.Arrays;
 
 public class BusinessAdressragment extends Fragment {
 
-    TextInputLayout address1,address2,lat,log;
+    TextInputLayout address1,address2,lat,log,cityname,phoneno,webaddress;
     Button nextbtn2;
     View view;
-//Button continue;
+    MaterialButtonToggleGroup toggle;
+    //Button continue;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +48,18 @@ public class BusinessAdressragment extends Fragment {
         log = view.findViewById(R.id.longitude);
         lat = view.findViewById(R.id.latitude);
         address2= view.findViewById(R.id.custom);
+        cityname=view.findViewById(R.id.city);
+        phoneno=view.findViewById(R.id.phone);
+        webaddress=view.findViewById(R.id.website);
+
         address1.setVisibility(View.GONE);
+
         for (TextInputLayout textInputLayout : Arrays.asList( address2, lat, log )) {
             textInputLayout.setVisibility( View.GONE );
         }
 
 //Toogle buttons
-        MaterialButtonToggleGroup toggle = view.findViewById(R.id.togleGroupButton);
+        toggle = view.findViewById(R.id.togleGroupButton);
 
         int buttonId = toggle.getCheckedButtonId();
         MaterialButton button = toggle.findViewById(buttonId);
@@ -79,15 +87,80 @@ public class BusinessAdressragment extends Fragment {
         nextbtn2.setOnClickListener( new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.frame, new businessHouresFragment());
-            ft.addToBackStack(null);
-            ft.commit();
+            if (ValidateAllFields()) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, new businessHouresFragment());
+                ft.addToBackStack(null);
+                ft.commit();
+            }
         }
-
-    });
+        });
         return view;
 
 
-}}
+
+    }
+
+    private boolean ValidateAllFields() {
+        String get_lon = log.getEditText().getText().toString().trim();
+        String get_lat = lat.getEditText().getText().toString().trim();
+        String get_customAdress = address2.getEditText().getText().toString().trim();
+        String get_city = cityname.getEditText().getText().toString().trim();
+        String get_phoneNo = phoneno.getEditText().getText().toString().trim();
+        String get_web = webaddress.getEditText().getText().toString().trim();
+        String get_address1 = address1.getEditText().getText().toString().trim();
+//int togle = toggle.getCheckedButtonId();
+//if (togle)
+        if (log.getVisibility() == View.VISIBLE && TextUtils.isEmpty(get_lon)) {
+            log.setError("Longtude Required");
+            return false;
+        }
+
+        if (lat.getVisibility() == View.VISIBLE && TextUtils.isEmpty(get_lat)) {
+            lat.setError("Latitude Required");
+            return false;
+        }
+        if (address2.getVisibility() == View.VISIBLE && TextUtils.isEmpty(get_customAdress)) {
+            address2.setError("Address Required");
+            return false;
+        }
+        if (TextUtils.isEmpty(get_city)) {
+            cityname.setError("City Required");
+            return false;
+        }
+        if (TextUtils.isEmpty(get_phoneNo)) {
+            phoneno.setError("Phone Number Required");
+            return false;
+        }
+
+
+        if (TextUtils.isEmpty(get_web)) {
+            webaddress.setError("Web Address Required");
+            return false;
+        }
+        if (address1.getVisibility() == View.VISIBLE && TextUtils.isEmpty(get_address1)) {
+            address1.setError("Address Required");
+            return false;
+        }
+        if (!android.util.Patterns.PHONE.matcher(get_phoneNo).matches())
+
+            {
+        phoneno.setError("This is not valid phone No");
+        return false;
+    }
+        if (!Patterns.WEB_URL.matcher(get_web).matches())
+
+        {
+            webaddress.setError("This is not valid Website");
+            return false;
+        }
+
+
+       /* if (taglinetext.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tLine)) {
+            taglinetext.setError("tagLine is  required.");
+            return false;
+        }*/
+
+        return true;
+
+    }}

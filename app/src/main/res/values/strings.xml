@@ -43,6 +43,7 @@
 
     </string-array>
     <string-array name="begningHours">
+        <item>Select Start Hr</item>
         <item>12:00 AM</item>
         <item>12:30 AM</item>
         <item>01:00 AM</item>
@@ -70,6 +71,7 @@
     </string-array>
 
     <string-array name="endHours">
+        <item>Select End Hr</item>
         <item>12:00 AM</item>
         <item>12:30 AM</item>
         <item>01:00 AM</item>
@@ -168,4 +170,5 @@
     <string name="_24_hours">24hr</string>
     <string name="next">Next</string>
     <string name="select_buiness_hours">Select Buiness Hours</string>
+    <string name="userName_required">Listing Title is  required</string>
 </resources>
