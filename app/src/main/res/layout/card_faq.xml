@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="false"
+    >
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/faqRawQ"
+            android:layout_width="350dp"
+            android:layout_height="90dp"
+            android:paddingEnd="25dp"
+            android:paddingStart="25dp"
+
+            android:hint="@string/faq"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/faqAnswerR"
+
+            android:layout_width="350dp"
+            android:layout_height="90dp"
+            android:paddingEnd="25dp"
+            android:paddingStart="25dp"
+
+
+            android:gravity="start|top"
+            android:hint="@string/answer"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:padding="12dp" />
+    </LinearLayout>
+
+</RelativeLayout>

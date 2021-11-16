@@ -35,9 +35,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar t;
 
 
-
-
     private boolean viewIsAtHome;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
                 viewIsAtHome = true;
                 break;
             case R.id.nav_listing:
-                fragment = new AddListing();
+          //   fragment= new QuestionAndAnswerBlankFragment();
+              // fragment = new AddListing();
+        fragment = new FirstPrimaryDetailFragment();
+         //  fragment = new businessHouresFragment ();
                 title = "Add Listing";
                 viewIsAtHome = false;
                 break;

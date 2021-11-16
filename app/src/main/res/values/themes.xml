@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
 
 
-    <style name="Theme.AfricanOwned" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AfricanOwned" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_500</item>
