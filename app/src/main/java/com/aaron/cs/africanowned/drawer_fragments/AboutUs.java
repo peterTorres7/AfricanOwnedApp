@@ -2,6 +2,8 @@ package com.aaron.cs.africanowned.drawer_fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,26 +12,24 @@ import android.view.ViewGroup;
 
 import com.aaron.cs.africanowned.R;
 
+import mehdi.sakout.aboutpage.AboutPage;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AboutUs#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class AboutUs extends Fragment {
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     public AboutUs() {
         // Required empty public constructor
     }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -47,7 +47,6 @@ public class AboutUs extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,15 +55,25 @@ public class AboutUs extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
     }
+
+
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_us, container, false);
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return new AboutPage(getContext())
+                .isRTL(false)
+                .setDescription(getString(R.string.app_description))
+                //.addItem(new VersionElement())
+                .addGroup(getString(R.string.application_information_group))
+                .addFacebook(getString(R.string.page_id))
+                .addTwitter(getString(R.string.page_id))
+                .addYoutube(getString(R.string.page_id))
+                .addPlayStore(getString(R.string.page_id))
+                .addInstagram(getString(R.string.page_id))
+                .addGroup(getString(R.string.contact_group))
+                .addEmail("us@example.com", "Email")
+                .create();
+    }}
 
-
-}
