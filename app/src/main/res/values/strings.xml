@@ -14,6 +14,8 @@
     <string name="email">Email</string>
     <string name="submitUrListing">submitUrListing</string>
     <string name="Countery">Countery</string>
+    <string name="facebook_app_id">4572330199520192</string>
+    <string name="fb_login_protocol_scheme">fb4572330199520192</string>
     <string-array name="spinner_country_choices">
         <item>Deafult Choice</item>
         <item>USA</item>
