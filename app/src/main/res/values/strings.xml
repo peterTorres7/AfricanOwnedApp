@@ -14,6 +14,8 @@
     <string name="email">Email</string>
     <string name="submitUrListing">submitUrListing</string>
     <string name="Countery">Countery</string>
+    <string name="facebook_app_id">4572330199520192</string>
+    <string name="fb_login_protocol_scheme">fb4572330199520192</string>
     <string-array name="spinner_country_choices">
         <item>Deafult Choice</item>
         <item>USA</item>
@@ -22,6 +24,83 @@
         <item>item 4</item>
         <item>item 5</item>
     </string-array>
+    //For Hours and Dates
+    <string-array name="spin_weekDays">
+
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string-array name="spin_socailMedia">
+
+        <item>Facebook</item>
+        <item>Twitter</item>
+        <item>Linkdin</item>
+        <item>Youtube</item>
+        <item>Instagram</item>
+
+    </string-array>
+    <string-array name="begningHours">
+        <item>Select Start Hr</item>
+        <item>12:00 AM</item>
+        <item>12:30 AM</item>
+        <item>01:00 AM</item>
+        <item>01:30 AM</item>
+        <item>02:30 AM</item>
+        <item>03:00 AM</item>
+        <item>03:30 AM</item>
+        <item>04:00 AM</item>
+        <item>04:30 AM</item>
+        <item>05:00 AM</item>
+        <item>05:30 AM</item>
+        <item>06:00 AM</item>
+        <item>06:30 AM</item>
+        <item>07:00 AM</item>
+        <item>07:30 AM</item>
+        <item>08:00 AM</item>
+        <item>08:30 AM</item>
+        <item>09:00 AM</item>
+        <item>09:30 AM</item>
+        <item>10:00 AM</item>
+        <item>10:30 AM</item>
+        <item>11:00 AM</item>
+        <item>11:30 AM</item>
+        <item>12:00 AM</item>
+    </string-array>
+
+    <string-array name="endHours">
+        <item>Select End Hr</item>
+        <item>12:00 AM</item>
+        <item>12:30 AM</item>
+        <item>01:00 AM</item>
+        <item>01:30 AM</item>
+        <item>02:30 AM</item>
+        <item>03:00 AM</item>
+        <item>03:30 AM</item>
+        <item>04:00 AM</item>
+        <item>04:30 AM</item>
+        <item>05:00 AM</item>
+        <item>05:30 AM</item>
+        <item>06:00 AM</item>
+        <item>06:30 AM</item>
+        <item>07:00 AM</item>
+        <item>07:30 AM</item>
+        <item>08:00 AM</item>
+        <item>08:30 AM</item>
+        <item>09:00 AM</item>
+        <item>09:30 AM</item>
+        <item>10:00 AM</item>
+        <item>10:30 AM</item>
+        <item>11:00 AM</item>
+        <item>11:30 AM</item>
+        <item>09:00 AM</item>
+    </string-array>
+
+
     <string-array name="spin_catagory">
         <item>Deafult Choice</item>
         <item>item 1</item>
@@ -36,7 +115,7 @@
     <string name="Tagline">Tagline</string>
     <string name="submit_your_listing_here">Submit Your Listing Here</string>
     <string name="tell_us_about_your_business_or_service">Tell us about your business or service</string>
-    <string name="next">Next</string>
+
     <string name="what_type_of_listing_do_you_have">WHAT TYPE OF LISTING DO YOU HAVE?</string>
     <string name="listing_title">Listing Title</string>
     <string name="does_your_business_have_a_tagline">Does your Business Have A Tagline?</string>
@@ -70,11 +149,28 @@
     <string name="page_id">id</string>
 
 
-
-
-
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="or">or</string>
     <string name="phone">Phone</string>
+    <string name="select_weekddays">weekdays</string>
+    <string name="social_media">socialmedia</string>
+    <string name="answer">answer</string>
+    <string name="faq">faq</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="week_days">days</string>
+    <string name="business_hour">bh</string>
+    <string name="media_name">medianame</string>
+    <string name="media_address">mediaadd</string>
+    <string name="add_new">addnew</string>
+    <string name="select_social_media">Select Social Media</string>
+    <string name="detail_describtion_abut_your_listing">Detail Describtion abut your listing</string>
+    <string name="more_info">MORE INFO.</string>
+    <string name="tages_or_keywords_comma_separated">Tages or Keywords (comma separated).</string>
+    <string name="tages_or_keywords">Tages or keywords</string>
+    <string name="select_end_hours">selectstring</string>
+    <string name="_24_hours">24hr</string>
+    <string name="next">Next</string>
+    <string name="select_buiness_hours">Select Buiness Hours</string>
+    <string name="userName_required">Listing Title is  required</string>
 </resources>

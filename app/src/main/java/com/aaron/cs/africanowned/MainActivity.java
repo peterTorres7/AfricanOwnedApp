@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -35,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar t;
 
 
-
-
     private boolean viewIsAtHome;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         t = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.nav_view);
+
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, t, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -75,7 +77,10 @@ public class MainActivity extends AppCompatActivity {
                 viewIsAtHome = true;
                 break;
             case R.id.nav_listing:
-                fragment = new AddListing();
+          //   fragment= new QuestionAndAnswerBlankFragment();
+              // fragment = new AddListing();
+        fragment = new FirstPrimaryDetailFragment();
+         //  fragment = new businessHouresFragment ();
                 title = "Add Listing";
                 viewIsAtHome = false;
                 break;

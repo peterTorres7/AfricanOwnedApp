@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/hoursLayout">
+
+    <TextView
+        android:id="@+id/textWeekDays"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/week_days"
+        android:layout_weight="1"
+          android:textSize="14sp"
+
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:id="@+id/textBusinessHour"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/business_hour"
+        android:layout_weight="1"
+
+        android:textSize="14sp"
+        android:paddingStart="10dp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        tools:ignore="RtlSymmetry" />
+
+
+
+
+    <ImageView
+        android:id="@+id/imageClose"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="5dp"
+        app:srcCompat="@android:drawable/btn_dialog"
+        android:contentDescription="@string/todo"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+
+</LinearLayout>
+

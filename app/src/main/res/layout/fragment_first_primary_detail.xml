@@ -15,20 +15,21 @@
             android:id="@+id/imageView2"
             android:layout_width="416dp"
             android:layout_height="174dp"
+            android:contentDescription="@string/todo"
             android:scaleType="centerCrop"
             android:src="@drawable/background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            android:contentDescription="@string/todo" />
+            app:layout_constraintVertical_bias="0.0" />
+
 
         <TextView
             android:id="@+id/submit_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="204dp"
             android:layout_marginEnd="24dp"
             android:text="@string/submit_your_listing_here"
             android:textColor="@color/black"
@@ -42,16 +43,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:text="@string/tell_us_about_your_business_or_service"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/submit_area"
-            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="@+id/submit_area"
             app:layout_constraintTop_toBottomOf="@+id/submit_area" />
-
 
         <EditText
             android:id="@+id/typeOfListing"
@@ -68,55 +68,56 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.308"
+            app:layout_constraintVertical_bias="0.474"
             tools:ignore="LabelFor,MissingConstraints" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="371dp"
-            android:layout_height="63dp"
-            android:layout_margin="20dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/typeOfListing"
-            app:layout_constraintVertical_bias="0.0"
-            app:shapeAppearance="@style/Rounded">
 
             <!-- Inside text input layout add
                   an auto complete text view
                     and make its input type to none-->
 
-            <AutoCompleteTextView
-                android:id="@+id/countery"
-                android:layout_width="350dp"
-                android:layout_height="match_parent"
 
-                android:layout_weight="1"
-                android:inputType="none"
-                android:text="Choose Countery"
-                android:textColor="#757575"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/purple_200"
-                app:endIconMode="clear_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.341"
-                app:shapeAppearance="@style/Rounded"
-                tools:ignore="LabelFor,TextContrastCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <Spinner
+            android:id="@+id/countery"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:autofillHints="Select Countery"
+            android:inputType="none"
+            android:text="Choose Countery"
+            android:textColor="#757575"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple_200"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.671"
+            app:shapeAppearance="@style/Rounded"
+            tools:ignore="LabelFor,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/tvInvisibleError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="204dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+
+            android:paddingTop="0dp"
+            android:paddingRight="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/listingTitle"
@@ -131,10 +132,10 @@
             app:endIconMode="clear_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.529"
+            app:layout_constraintVertical_bias="0.573"
             app:shapeAppearance="@style/Rounded"
             tools:ignore="MissingConstraints">
 
@@ -151,7 +152,7 @@
             android:id="@+id/taglineCheck"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:padding="10dp"
             android:text="@string/does_your_business_have_a_tagline"
             android:textAlignment="viewStart"
@@ -160,7 +161,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.644"
+            app:layout_constraintVertical_bias="0.794"
             app:shapeAppearance="@style/Rounded">
 
         </CheckBox>
@@ -181,7 +182,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="0.756"
+            app:layout_constraintVertical_bias="0.907"
             app:shapeAppearance="@style/Rounded"
             tools:ignore="MissingConstraints">
 
@@ -193,14 +194,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.442"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="0.831"
+            app:layout_constraintVertical_bias="0.992"
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.button.MaterialButton
