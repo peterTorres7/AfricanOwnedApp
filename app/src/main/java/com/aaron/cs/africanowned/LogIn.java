@@ -1,8 +1,10 @@
 package com.aaron.cs.africanowned;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +24,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -31,8 +35,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LogIn extends AppCompatActivity {
     EditText uEmail, uPassword;
-    Button uLoginButton, uLogoutButton;
-    TextView uCreateButton;
+    Button uLoginButton, uLogoutButton, uCloseButton;
+    TextView uCreateButton, uForgotPasswordButton;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     SignInButton googleSignInButton;
@@ -52,6 +56,8 @@ public class LogIn extends AppCompatActivity {
         uCreateButton = findViewById(R.id.alreadyRegistered);
         googleSignInButton = findViewById(R.id.googleSignInButton);
         uLogoutButton = findViewById(R.id.logOut);
+        uForgotPasswordButton = findViewById(R.id.forgotPassword);
+        //uCloseButton = findViewById(R.id.closeButton);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -109,6 +115,52 @@ public class LogIn extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SignUp.class));
             }
         });
+
+        uForgotPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText resetEmail = new EditText(v.getContext());
+                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                passwordResetDialog.setTitle("Reset Password?");
+                passwordResetDialog.setMessage("Enter email to receive link.");
+                passwordResetDialog.setView(resetEmail);
+
+                passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String email = resetEmail.getText().toString();
+                        fAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(LogIn.this, "Reset link sent to your email!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(LogIn.this, "Error, link not sent " + e.getMessage() , Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+                passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // closes dialog
+                    }
+                });
+
+                passwordResetDialog.create().show();
+            }
+        });
+
+//        uCloseButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                uLogoutButton.setVisibility(View.GONE);
+//            }
+//        });
     }
 
     private void signIn() {
@@ -167,7 +219,7 @@ public class LogIn extends AppCompatActivity {
             String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
 
-            Toast.makeText(LogIn.this, "Hi " + personGivenName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(LogIn.this, "Hi " + personGivenName + " " + personFamilyName, Toast.LENGTH_SHORT).show();
         }
     }
 }
