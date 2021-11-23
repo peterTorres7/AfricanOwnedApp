@@ -41,28 +41,24 @@
         tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
-            android:layout_width="168dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:weightSum="2"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/socialMedia"
-                    android:layout_width="match_parent"
-
-                    android:layout_height="40dp"
-                    android:contentDescription="@string/select_weekddays" />
-            </FrameLayout>
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/socialMedia"
+                android:layout_width="50dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:contentDescription="@string/select_social_media" />
 
             <EditText
                 android:id="@+id/socialMediaAdress"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:hint="@string/social_media"
 
                 android:inputType="textPersonName"
@@ -93,7 +89,10 @@
         android:layout_height="40dp"
         android:layout_margin="15dp"
         android:text="@string/select_social_media"
-
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:paddingTop="15dp"
         android:textSize="15sp"
         app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
