@@ -37,6 +37,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             app:layout_constraintVertical_bias="0.043"
+            app:checkedButton="@id/searchByGoogle"
+            app:selectionRequired="true"
             app:singleSelection="true">
 
 
@@ -153,7 +155,7 @@
             android:layout_marginTop="10dp"
 
             android:layout_marginEnd="32dp"
-            android:hint="@string/select_city"
+            android:hint="@string/add_city"
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
