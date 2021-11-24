@@ -25,10 +25,10 @@ Button nextbtn;
 
             public void onClick(View view) {
 
-              /*  FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame, new SocilMediaFragment());
+               FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, new Media());
                 ft.addToBackStack(null);
-                ft.commit();*/
+                ft.commit();
 
             }
 
