@@ -36,7 +36,7 @@
         <item>Sunday</item>
     </string-array>
     <string-array name="spin_socailMedia">
-
+        <item>Select Social Media</item>
         <item>Facebook</item>
         <item>Twitter</item>
         <item>Linkdin</item>
@@ -173,4 +173,5 @@
     <string name="next">Next</string>
     <string name="select_buiness_hours">Select Buiness Hours</string>
     <string name="userName_required">Listing Title is  required</string>
+    <string name="add_city">Add City</string>
 </resources>

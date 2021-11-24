@@ -22,6 +22,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 public class FirstPrimaryDetailFragment extends Fragment  {
@@ -35,6 +36,7 @@ public class FirstPrimaryDetailFragment extends Fragment  {
     String tLine,lTitle;
 
      Boolean isCountrySelected ;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,15 +92,6 @@ public class FirstPrimaryDetailFragment extends Fragment  {
         // Apply the adapter to the your spinner
         autocomplet.setAdapter(countryAdapter);
 
-
-
-
-        //Get Valu
-     //   String tLine=taglinetext.getEditText().getText().toString().trim();
-       // String lTitle=title.getEditText().getText().toString().trim();
-    //    Boolean isCountrySelected =autocomplet.getSelectedItem().toString().trim().equals("Choose Countery");
-
-
       nextbtn.setOnClickListener( new View.OnClickListener() {
 
 
@@ -147,7 +140,6 @@ public class FirstPrimaryDetailFragment extends Fragment  {
             title.setError("List title is required.");
             return false;
         }
-
 
         return true;
 
