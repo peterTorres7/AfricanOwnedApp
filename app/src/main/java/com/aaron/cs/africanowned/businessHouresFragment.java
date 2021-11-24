@@ -2,7 +2,6 @@ package com.aaron.cs.africanowned;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,9 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +21,6 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -48,6 +46,7 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
     ArrayAdapter adapterWeekdays;
 
     List<String> teamList = new ArrayList<String>();
+    List<String> selectedDays = new ArrayList<String>();
 
 
 
@@ -76,10 +75,18 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
         getEndHours = view.findViewById( R.id.endingHr );
         hours24 = view.findViewById( R.id.hours24 );
         addBtn = view.findViewById( R.id.addButton );
-        nextbtn=view.findViewById( R.id.next );teamList.add("Select Days");
+        nextbtn=view.findViewById( R.id.next );
+        teamList.add("Select Days");
         teamList.add("Monday");teamList.add("Tuesday");teamList.add("Wednesday");
         teamList.add("Thursday");teamList.add("Friday");teamList.add("Saturday");teamList.add("Sunday");
 
+        hours24.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                getStartHour.setEnabled(!isChecked);
+                getEndHours.setEnabled(!isChecked);
+            }
+        });
 
         addBtn.setOnClickListener(this);
         poplateWeekDays( view );
@@ -115,46 +122,61 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
     @Override
     public void onClick(View view)
     {
-
-
         addField();
     }
 
-    public void addField() {
+   public void addField() {
         View myview = getLayoutInflater().inflate( R.layout.business_hours,null );
         TextView weekday = (TextView)myview.findViewById( R.id.textWeekDays );
         TextView hours = (TextView) myview.findViewById( R.id.textBusinessHour );
         ImageView closeButton = myview.findViewById( R.id.imageClose );
 
-        days = getweekDays.getSelectedItem().toString();
-        start = getStartHour.getSelectedItem().toString();
-        end = getEndHours.getSelectedItem().toString();
-        if (days.equals("Select Days"))
-            Toast.makeText(getActivity(), "please select  Weekdays", Toast.LENGTH_SHORT).show();
+       getSelectedValu();
 
+       if (days.equals("Select Days")) {
+            Toast.makeText(getActivity(), "please select  Weekdays", Toast.LENGTH_SHORT).show();
+        }
        else if (start.equals("Select Start Hr"))
             Toast.makeText(getActivity(), "please select Starting hours", Toast.LENGTH_SHORT).show();
 
         else if(end.equals("Select End Hr"))
             Toast.makeText(getActivity(), "please select Ending hours", Toast.LENGTH_SHORT).show();
         else {
-            weekday.setText(days);
-            hours.setText(start + " -" + end + "\n");
-            parentLayout.addView(myview);
+            if (checkDayAlreadyPicked(days)) {
+                Toast.makeText(getActivity(), "Day already picked: " + days, Toast.LENGTH_SHORT).show();
+            } else {
+                weekday.setText(days);
+                hours.setText(start + " -" + end + "\n");
+                selectedDays.add(days);
+                parentLayout.addView(myview);
+                resetViews();
+            }
         }
 
         if(hours24.isChecked()) {
+            if (checkDayAlreadyPicked(days)) {
+                Toast.makeText(getActivity(), "Day already picked: " + days, Toast.LENGTH_SHORT).show();
+            }
+            else if (days.equals("Select Days")) {
+                Toast.makeText(getActivity(), "please select  Weekdays", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                weekday.setText(days);
+                hours.setText(openhours);
 
-            hours.setText( openhours );
-
-            parentLayout.addView( myview );
+                selectedDays.add(days);
+                parentLayout.addView(myview);
+                //getweekDays.setSelection(0);
+            }
         }
 
 
         closeButton.setOnClickListener( new OnClickListener() {
            @Override
             public void onClick(View view) {
-                parentLayout.removeView( myview );
+
+               parentLayout.removeView( myview );
+               selectedDays.remove(days);
             }
         } );
 
@@ -162,10 +184,28 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
         //   parentLayout.addView( myview );
     }
 
-
-    public void onDelete(View v) {
-        parentLayout.removeView( ( View ) v.getParent() );
+    private void getSelectedValu() {
+        days = getweekDays.getSelectedItem().toString();
+        start = getStartHour.getSelectedItem().toString();
+        end = getEndHours.getSelectedItem().toString();
     }
+
+    private void resetViews() {
+        getweekDays.setSelection(0);
+        getStartHour.setSelection(0);
+        getEndHours.setSelection(0);
+        hours24.setChecked(false);
+    }
+// Check if the Day is already Selected
+    private boolean checkDayAlreadyPicked(String day) {
+        for (int i = 0; i < selectedDays.size(); i++) {
+            if (day.equals(selectedDays.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void poplateWeekDays(View view)
     {
