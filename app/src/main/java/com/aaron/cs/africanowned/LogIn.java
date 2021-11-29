@@ -43,10 +43,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LogIn extends AppCompatActivity {
     EditText uEmail, uPassword;
-    Button uLoginButton, uLogoutButton, uCloseButton;
+    Button uLoginButton, uLogoutButton;
     TextView uCreateButton, uForgotPasswordButton;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
@@ -96,7 +98,6 @@ public class LogIn extends AppCompatActivity {
         googleSignInButton = findViewById(R.id.googleSignInButton);
         uLogoutButton = findViewById(R.id.logOut);
         uForgotPasswordButton = findViewById(R.id.forgotPassword);
-        //uCloseButton = findViewById(R.id.closeButton);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -120,14 +121,15 @@ public class LogIn extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(email)) {
                     uEmail.setError("Email is required.");
+                    isValidEmail(email);
                     return;
                 }
                 if(TextUtils.isEmpty(password)) {
                     uPassword.setError("Password is required.");
                     return;
                 }
-                if(password.length() < 7) {
-                    uPassword.setError("Password must be at least 7 characters long.");
+                if(password.length() < 7 || !isValidPassword(password)) {
+                    uPassword.setError("Password must contain 1 Uppercase, 1 Number, 1 Symbol and be at least 7 characters long.");
                     return;
                 }
 
@@ -192,14 +194,6 @@ public class LogIn extends AppCompatActivity {
                 passwordResetDialog.create().show();
             }
         });
-
-//        uCloseButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                uLogoutButton.setVisibility(View.GONE);
-//            }
-//        });
     }
 
     private void signIn() {
@@ -262,5 +256,23 @@ public class LogIn extends AppCompatActivity {
 
             Toast.makeText(LogIn.this, "Hi " + personGivenName + " " + personFamilyName, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null)
+            return false;
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    public static boolean isValidPassword(final String password) {
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+
     }
 }
