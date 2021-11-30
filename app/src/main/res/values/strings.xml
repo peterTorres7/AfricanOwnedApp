@@ -11,7 +11,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="already_registered_login_here">Already Registered? Login Here</string>
-    <string name="email">Email</string>
     <string name="submitUrListing">submitUrListing</string>
     <string name="Countery">Countery</string>
     <string name="facebook_app_id">4572330199520192</string>
@@ -174,4 +173,6 @@
     <string name="select_buiness_hours">Select Buiness Hours</string>
     <string name="userName_required">Listing Title is  required</string>
     <string name="add_city">Add City</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="email">Email</string>
 </resources>
