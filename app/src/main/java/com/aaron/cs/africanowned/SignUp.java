@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
@@ -61,7 +64,7 @@ public class SignUp extends AppCompatActivity {
                 String name = uName.getText().toString().trim();
                 String email = uEmail.getText().toString().trim();
                 String password = uPassword.getText().toString().trim();
-                String phone = uPhone.getText().toString();
+                String phone = uPhone.getText().toString().trim();
 
                 if(TextUtils.isEmpty(name)) {
                     uName.setError("Name is required.");
@@ -69,18 +72,24 @@ public class SignUp extends AppCompatActivity {
                 }
                 if(TextUtils.isEmpty(email)) {
                     uEmail.setError("Email is required.");
+                    isValidEmail(email);
                     return;
                 }
                 if(TextUtils.isEmpty(password)) {
                     uPassword.setError("Password is required.");
                     return;
                 }
-                if(password.length() < 7) {
-                    uPassword.setError("Password must be at least 7 characters long.");
+                if(password.length() < 7 || !isValidPassword(password)) {
+                    uPassword.setError("Password must contain 1 Uppercase, 1 Number, 1 Symbol and be at least 7 characters long.");
                     return;
                 }
                 if(TextUtils.isEmpty(phone)) {
                     uPhone.setError("Phone is required.");
+                    isValidPhoneNumber(phone);
+                    return;
+                }
+                if(phone.length() < 10 || !isValidPhoneNumber(phone)) {
+                    uPhone.setError("Phone must be valid and at least 10 numbers long.");
                     return;
                 }
 
@@ -118,6 +127,31 @@ public class SignUp extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), LogIn.class));
             }
         });
+
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null)
+            return false;
+
+        return Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    public static boolean isValidPassword(final String password) {
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+    }
+
+    private boolean isValidPhoneNumber(CharSequence phoneNumber) {
+        if (phoneNumber == null)
+            return false;
+
+        return Patterns.PHONE.matcher(phoneNumber).matches();
 
     }
 }

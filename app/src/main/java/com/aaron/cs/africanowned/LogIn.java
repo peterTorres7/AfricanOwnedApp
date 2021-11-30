@@ -170,6 +170,10 @@ public class LogIn extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String email = resetEmail.getText().toString();
+                        if(TextUtils.isEmpty(email)) {
+                            Toast.makeText(LogIn.this, "Email is required to reset password.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         fAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
@@ -273,6 +277,5 @@ public class LogIn extends AppCompatActivity {
         matcher = pattern.matcher(password);
 
         return matcher.matches();
-
     }
 }
