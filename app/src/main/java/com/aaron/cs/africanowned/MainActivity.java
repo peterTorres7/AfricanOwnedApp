@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                 viewIsAtHome = true;
                 break;
             case R.id.nav_listing:
-
+//test
        fragment = new FirstPrimaryDetailFragment();
                 title = "Add Listing";
                 viewIsAtHome = false;
