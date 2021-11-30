@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class FrequentlyAQFragment extends Fragment {
     LinearLayout parentlayout;
-    Button add, nextButn;
+    Button add, skipBtn,nextButn;
     EditText faqR, faqAnswerR;
     View myView, view;
     String question,answer;
@@ -31,13 +31,18 @@ public class FrequentlyAQFragment extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.faq_fragment, container, false);
-        parentlayout = view.findViewById(R.id.parent_layout);
-        nextButn = view.findViewById(R.id.nextButton);
-        myView = getLayoutInflater().inflate(R.layout.card_faq, null);
-        faqR = myView.findViewById(R.id.faqRawQ);
-        faqAnswerR = myView.findViewById(R.id.faqAnswerR);
+        initViews();
+        skipBtn.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        add = view.findViewById(R.id.addButton);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame, new MoreInformationFragment());
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+
+        });
         nextButn.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -45,6 +50,7 @@ public class FrequentlyAQFragment extends Fragment {
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new MoreInformationFragment());
+                ft.addToBackStack(null);
                 ft.commit();
             }
         });
@@ -65,6 +71,18 @@ public class FrequentlyAQFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void initViews() {
+        parentlayout = view.findViewById(R.id.parent_layout);
+        nextButn = view.findViewById(R.id.nextButton);
+        skipBtn= view.findViewById(R.id.skip);
+        myView = getLayoutInflater().inflate(R.layout.card_faq, null);
+        faqR = myView.findViewById(R.id.faqRawQ);
+        faqAnswerR = myView.findViewById(R.id.faqAnswerR);
+
+        add = view.findViewById(R.id.addButton);
+        skipBtn=view.findViewById(R.id.skip);
     }
 
     private void resetFildes() {

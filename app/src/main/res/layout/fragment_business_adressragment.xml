@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -24,6 +24,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/submit_area"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+
+            android:gravity="center_horizontal"
+            android:text="@string/address3"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintHorizontal_bias="0.972"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.255" />
+
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/togleGroupButton"
@@ -46,58 +67,80 @@
                 android:id="@+id/searchByGoogle"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+                android:layout_height="60dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:textSize="15sp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/purple_200"
+                app:endIconMode="clear_text"
+                android:ems="10"
+
                 android:text="@string/search_by_google" />
 
             <Button
                 android:id="@+id/manualCoordinates"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                android:layout_width="169dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+
+                android:layout_height="60dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:textSize="15sp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/purple_200"
+                app:endIconMode="clear_text"
+                android:ems="10"
                 android:text="@string/manual_coordinates"
-                tools:layout_editor_absoluteX="224dp"
-                tools:layout_editor_absoluteY="230dp" />
+                />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/address"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="32dp"
-            android:hint="@string/full_address"
+            android:textSize="15sp"
             app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple_200"
+            app:endIconMode="clear_text"
+            android:ems="10"
+
+            app:shapeAppearance="@style/Rounded"
+android:hint="@string/adress"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/togleGroupButton"
             app:layout_goneMarginTop="16dp">
-
-
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/custom"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-
             android:layout_marginEnd="32dp"
-            android:hint="@string/add_custome_address"
+            android:textSize="15sp"
             app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple_200"
+            app:endIconMode="clear_text"
+            android:ems="10"
+            app:shapeAppearance="@style/Rounded"
+            android:hint="@string/add_custome_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/address"
             app:layout_goneMarginTop="24dp">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -107,10 +150,12 @@
             android:id="@+id/latitude"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="32dp"
+            android:layout_height="60dp"
+
+
+            app:boxStrokeColor="@color/purple_200"
+            app:endIconMode="clear_text"
+            app:shapeAppearance="@style/Rounded"
             android:hint="@string/latitude"
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -129,12 +174,16 @@
             android:id="@+id/longitude"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
 
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/longitude"
+
+            app:boxStrokeColor="@color/purple_200"
+            app:endIconMode="clear_text"
+            app:shapeAppearance="@style/Rounded"
+
             app:boxBackgroundMode="outline"
+            android:hint="@string/longitude"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/latitude"
@@ -150,12 +199,16 @@
             android:id="@+id/city"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-
             android:layout_marginEnd="32dp"
-            android:hint="@string/add_city"
+
+            app:boxStrokeColor="@color/purple_200"
+            app:endIconMode="clear_text"
+            app:shapeAppearance="@style/Rounded"
+
+
+            android:hint="@string/city2"
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -173,12 +226,16 @@
             android:id="@+id/phone"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginStart="32dp"
-
             android:layout_marginEnd="32dp"
-            android:hint="@string/enter_phone"
-            android:layout_marginTop="10dp"
+            android:hint="@string/phone"
+
+
+
+            app:boxStrokeColor="@color/purple_200"
+            app:endIconMode="clear_text"
+            app:shapeAppearance="@style/Rounded"
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -195,11 +252,13 @@
             android:id="@+id/website"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-
             android:layout_marginEnd="32dp"
+
+            app:boxStrokeColor="@color/purple_200"
+            app:endIconMode="clear_text"
+            app:shapeAppearance="@style/Rounded"
             android:hint="@string/website"
             app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -215,18 +274,22 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/next2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+        
+            android:layout_height="60dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/african_button_bg"
             android:text="@string/next"
             app:cornerRadius="100dp"
             app:iconPadding="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.764"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/website"
-            app:layout_constraintVertical_bias="0.666" />
+            app:layout_constraintVertical_bias="0.402" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

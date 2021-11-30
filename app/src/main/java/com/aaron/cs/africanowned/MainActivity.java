@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
@@ -29,21 +30,25 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar t;
+    FragmentManager fragmentManager;
 
 
     private boolean viewIsAtHome;
+    private FragmentManager manager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        manager = getSupportFragmentManager();
+        manager.addOnBackStackChangedListener(this);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         t = findViewById(R.id.toolbar);
@@ -77,10 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 viewIsAtHome = true;
                 break;
             case R.id.nav_listing:
-          //   fragment= new QuestionAndAnswerBlankFragment();
-              // fragment = new AddListing();
-        fragment = new FirstPrimaryDetailFragment();
-         //  fragment = new businessHouresFragment ();
+
+       fragment = new FirstPrimaryDetailFragment();
                 title = "Add Listing";
                 viewIsAtHome = false;
                 break;
@@ -105,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.frame, fragment);
+            ft.addToBackStack(null);
             ft.commit();
         }
 
@@ -123,9 +127,21 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+/*
+    @Override
+    public void onBackStackChanged() {
+        if (manager.getBackStackEntryCount() > 0) {
+            manager.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+
+    }*/
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+     /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
@@ -133,7 +149,17 @@ public class MainActivity extends AppCompatActivity {
             displayView(R.id.nav_home);
         } else {
             moveTaskToBack(true);
+        }*/
+        if (manager.getBackStackEntryCount() > 0) {
+            manager.popBackStack();
+        } else {
+            super.onBackPressed();
         }
     }
 
+    @Override
+    public void onBackStackChanged() {
+
+
+    }
 }

@@ -6,12 +6,14 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -28,12 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SocilMediaFragment extends Fragment implements View.OnClickListener {
-
-
-    Button addBtn, nextButn;
+public class SocilMediaFragment extends Fragment implements View.OnClickListener{
+FragmentManager manager;
+    Button addBtn, nextButn, skipBtn;
     View view;
-    AppCompatSpinner getSocialMedia;
+    AutoCompleteTextView getSocialMedia;
     EditText getmediaAdress;
     String smedia;
     private LinearLayout parentLayout;
@@ -45,26 +46,33 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
         // Inflate the layout for this fragment
         View view = inflater.inflate( R.layout.fragment_socil_media, container, false );
 
-        parentLayout = ( LinearLayout ) view.findViewById( R.id.parentViwLayout );
-        getSocialMedia = view.findViewById( R.id.socialMedia );
-        getmediaAdress = view.findViewById(R.id.socialMediaAdress );
-
-        addBtn = view.findViewById( R.id.addButton );
+        iniitFildes(view);
         addBtn.setOnClickListener(this);
         poplateSocialMedia( view );
-        nextButn=view.findViewById(R.id.nextBUtn);
-       nextButn.setOnClickListener( new View.OnClickListener() {
+
+
+        nextButn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new FrequentlyAQFragment());
+                ft.addToBackStack(null);
                 ft.commit();
             }
 
         });
+
         return view;
 
+    }
+
+    private void iniitFildes(View view) {
+        parentLayout = ( LinearLayout ) view.findViewById( R.id.parentViwLayout );
+        getSocialMedia = view.findViewById( R.id.socialMedia );
+        getmediaAdress = view.findViewById(R.id.socialMediaAdress );
+        nextButn= view.findViewById(R.id.nextBUtn);
+        addBtn = view.findViewById( R.id.addButton );
     }
 
     public void poplateSocialMedia(View view) {
@@ -75,6 +83,12 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
         addepterMedia.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         // Apply the adapter to the spinner of socialmedia
         getSocialMedia.setAdapter( addepterMedia );
+        getSocialMedia.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                smedia = parent.getItemAtPosition(position).toString();
+            }
+        });
 
         // getweekDays.setOnItemClickListener(new  a);
     }
@@ -89,10 +103,10 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
         TextView nameMedia = myview.findViewById( R.id.media );
         TextView mediaAdress = (TextView) myview.findViewById(R.id.mediaWeb );
         ImageView closeButton = myview.findViewById( R.id.imageClose );
-        String name = getSocialMedia.getSelectedItem().toString();
+        String name = smedia;
         String address = getmediaAdress.getText().toString();
 
-             if (name.equals("Select Social Media")){
+             if (name==null){
                 Toast.makeText(getActivity(), "please select media", Toast.LENGTH_SHORT).show();
              }
             else if (checkSocilaMediaAlreadyPicked(name))
@@ -132,4 +146,5 @@ public class SocilMediaFragment extends Fragment implements View.OnClickListener
     }
         return false;
     }
+
 }
