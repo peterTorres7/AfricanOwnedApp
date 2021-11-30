@@ -26,20 +26,23 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class businessHouresFragment extends Fragment implements OnClickListener, AdapterView.OnItemSelectedListener {
+public class businessHouresFragment extends Fragment implements OnClickListener {
 
     TextInputLayout dropdown;
     AutoCompleteTextView autocomplet;
-    String category;
+    String item;
+    String three;
     Button addBtn,nextbtn;
     View view;
-    AppCompatSpinner getweekDays,getStartHour, getEndHours;
+    AutoCompleteTextView getweekDays,getStartHour, getEndHours;
     //Spinner  getStartHour, getEndHours;
     CheckBox hours24;
     Button next3;
     String days;
     String start;
     String end;
+
+    Boolean selected =true;
     String daysW;
     public String openhours=" 24 hours open";
     private LinearLayout parentLayout;
@@ -56,26 +59,12 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate( R.layout.fragment_business_houres, container, false );
-     // ArrayList<Cricketer> cricketersList = new ArrayList<>();
-        nextbtn = view.findViewById(R.id.next);
-        dropdown = view.findViewById( R.id.textInputLayout2 );
-        autocomplet = view.findViewById( R.id.category );
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( view.getContext(),
-                R.array.spin_catagory, android.R.layout.simple_list_item_1 );
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
-// Apply the adapter to the autocomplet
-        autocomplet.setAdapter( adapter );
-
-
-        parentLayout = ( LinearLayout ) view.findViewById( R.id.parentViwLayout );
-        getweekDays = view.findViewById( R.id.weekDays );
-        getStartHour = view.findViewById( R.id.beginingHr );
-        getEndHours = view.findViewById( R.id.endingHr );
-        hours24 = view.findViewById( R.id.hours24 );
-        addBtn = view.findViewById( R.id.addButton );
-        nextbtn=view.findViewById( R.id.next );
+        initalizeViews(view);
+        //  populateCategory(view);
+        poplateWeekDays( view );
+        poplateStartDate( view );
+        populateEndDate(view );
         teamList.add("Select Days");
         teamList.add("Monday");teamList.add("Tuesday");teamList.add("Wednesday");
         teamList.add("Thursday");teamList.add("Friday");teamList.add("Saturday");teamList.add("Sunday");
@@ -88,20 +77,18 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
             }
         });
 
+
         addBtn.setOnClickListener(this);
-        poplateWeekDays( view );
-        poplateStartDate( view );
-        populateEndDate(view );
 
 
-        nextbtn.setOnClickListener( new View.OnClickListener() {
+        nextbtn.setOnClickListener( new OnClickListener() {
             @Override
 
             public void onClick(View view) {
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new SocilMediaFragment());
-                ft.addToBackStack(null);
+                ft.addToBackStack(three);
                 ft.commit();
 
             }
@@ -110,36 +97,58 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
 
         });
 
-        //next button
-
-//        getSelectedItem();
         return view;
 
     }
 
 
+    private boolean validateCategory()
+    {
 
+        if ((item==null)){
+            Toast.makeText(getActivity(), "please select  Category", Toast.LENGTH_SHORT).show();
+            return false;
+
+
+        }
+        else return true;
+    }
+
+    private void initalizeViews(View view) {
+        nextbtn = view.findViewById(R.id.next);
+        dropdown = view.findViewById( R.id.textInputLayout2 );
+
+        parentLayout = ( LinearLayout ) view.findViewById( R.id.parentViwLayout );
+        getweekDays = view.findViewById( R.id.weekDays );
+        getStartHour = view.findViewById( R.id.beginingHr );
+        getEndHours = view.findViewById( R.id.endingHr );
+        hours24 = view.findViewById( R.id.hours24 );
+        addBtn = view.findViewById( R.id.addButton );
+        nextbtn= view.findViewById( R.id.next );
+
+    }
     @Override
     public void onClick(View view)
     {
         addField();
     }
 
-   public void addField() {
+    public void addField() {
         View myview = getLayoutInflater().inflate( R.layout.business_hours,null );
         TextView weekday = (TextView)myview.findViewById( R.id.textWeekDays );
         TextView hours = (TextView) myview.findViewById( R.id.textBusinessHour );
         ImageView closeButton = myview.findViewById( R.id.imageClose );
 
-       getSelectedValu();
+        //getSelectedValu();
 
-       if (days.equals("Select Days")) {
+        if (days==null)
+        {
             Toast.makeText(getActivity(), "please select  Weekdays", Toast.LENGTH_SHORT).show();
         }
-       else if (start.equals("Select Start Hr"))
+        else if (start==null)
             Toast.makeText(getActivity(), "please select Starting hours", Toast.LENGTH_SHORT).show();
 
-        else if(end.equals("Select End Hr"))
+        else if(end==null)
             Toast.makeText(getActivity(), "please select Ending hours", Toast.LENGTH_SHORT).show();
         else {
             if (checkDayAlreadyPicked(days)) {
@@ -157,7 +166,7 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
             if (checkDayAlreadyPicked(days)) {
                 Toast.makeText(getActivity(), "Day already picked: " + days, Toast.LENGTH_SHORT).show();
             }
-            else if (days.equals("Select Days")) {
+            else if (days==null) {
                 Toast.makeText(getActivity(), "please select  Weekdays", Toast.LENGTH_SHORT).show();
             }
             else {
@@ -172,34 +181,28 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
 
 
         closeButton.setOnClickListener( new OnClickListener() {
-           @Override
+            @Override
             public void onClick(View view) {
 
-               parentLayout.removeView( myview );
-               selectedDays.remove(days);
+                parentLayout.removeView( myview );
+                selectedDays.remove(days);
             }
         } );
 
 
-        //   parentLayout.addView( myview );
-    }
-
-    private void getSelectedValu() {
-        days = getweekDays.getSelectedItem().toString();
-        start = getStartHour.getSelectedItem().toString();
-        end = getEndHours.getSelectedItem().toString();
     }
 
     private void resetViews() {
+
         getweekDays.setSelection(0);
         getStartHour.setSelection(0);
         getEndHours.setSelection(0);
         hours24.setChecked(false);
     }
-// Check if the Day is already Selected
+    // Check if the Day is already Selected
     private boolean checkDayAlreadyPicked(String day) {
         for (int i = 0; i < selectedDays.size(); i++) {
-            if (day.equals(selectedDays.get(i))) {
+            if (days.equals(selectedDays.get(i))) {
                 return true;
             }
         }
@@ -216,6 +219,12 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
         adapterWeekdays.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 
         getweekDays.setAdapter( adapterWeekdays );
+        getweekDays.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                days = parent.getItemAtPosition(position).toString();
+            }
+        });
 
     }
 
@@ -227,6 +236,12 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
         adapterStartHours.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         // Apply the adapter to the spinner of weekdays
         getStartHour.setAdapter( adapterStartHours );
+        getStartHour.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                start = parent.getItemAtPosition(position).toString();
+            }
+        });
     }
     public void populateEndDate(View view) {
         // Create an ArrayAdapter for End hour
@@ -235,34 +250,17 @@ public class businessHouresFragment extends Fragment implements OnClickListener,
         adapterEndingHours.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
         // Apply the adapter to the spinner of weekdays
         getEndHours.setAdapter( adapterEndingHours );
-    }
-
-
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        //Toast.makeText(parent.getContext(),days)
-        switch (view.getId())
+        getEndHours.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
-            case R.id.weekDays:
-                days= parent.getItemAtPosition(position).toString();
-                break;
 
-            case R.id.beginingHr:
-                start= parent.getItemAtPosition(position).toString();
-                break;
-
-            case R.id.endingHr:
-                end= parent.getItemAtPosition(position).toString();
-                break;
-        }
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                end = parent.getItemAtPosition(position).toString();
+            }
+        });
 
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        //  Toast.makeText(parent.getContext(),"selectWeek", Toast.LENGTH_LONG).show();
 
-    }
+
 }
 

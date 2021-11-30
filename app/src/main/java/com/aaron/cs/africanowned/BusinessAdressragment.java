@@ -27,9 +27,11 @@ public class BusinessAdressragment extends Fragment {
 
     TextInputLayout address1,address2,lat,log,cityname,phoneno,webaddress;
     Button nextbtn2;
+String two;
+
     View view;
     MaterialButtonToggleGroup toggle;
-    //Button continue;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +45,7 @@ public class BusinessAdressragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate( R.layout.fragment_business_adressragment, container, false );
 
-        nextbtn2 = view.findViewById( R.id.next2);
-        address1 = view.findViewById(R.id.address);
-        log = view.findViewById(R.id.longitude);
-        lat = view.findViewById(R.id.latitude);
-        address2= view.findViewById(R.id.custom);
-        cityname=view.findViewById(R.id.city);
-        phoneno=view.findViewById(R.id.phone);
-        webaddress=view.findViewById(R.id.website);
+        initalizeVies(view);
 
         address1.setVisibility(View.GONE);
 
@@ -83,10 +78,11 @@ public class BusinessAdressragment extends Fragment {
                     }
             }
         });
-// on click event next fragment will opne
+// on click event next fragment will open
         nextbtn2.setOnClickListener( new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            //if it is vallid it will open business Hours Fragment
             if (ValidateAllFields()) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new businessHouresFragment());
@@ -101,7 +97,20 @@ public class BusinessAdressragment extends Fragment {
 
     }
 
-    private boolean ValidateAllFields() {
+    private void initalizeVies(View view) {
+        nextbtn2 = view.findViewById( R.id.next2);
+        address1 = view.findViewById(R.id.address);
+        log = view.findViewById(R.id.longitude);
+        lat = view.findViewById(R.id.latitude);
+        address2= view.findViewById(R.id.custom);
+        cityname= view.findViewById(R.id.city);
+        phoneno= view.findViewById(R.id.phone);
+        webaddress= view.findViewById(R.id.website);
+    }
+    //check if the Fields are empity and display message
+
+    private boolean ValidateAllFields()
+    {
         String get_lon = log.getEditText().getText().toString().trim();
         String get_lat = lat.getEditText().getText().toString().trim();
         String get_customAdress = address2.getEditText().getText().toString().trim();
@@ -109,8 +118,7 @@ public class BusinessAdressragment extends Fragment {
         String get_phoneNo = phoneno.getEditText().getText().toString().trim();
         String get_web = webaddress.getEditText().getText().toString().trim();
         String get_address1 = address1.getEditText().getText().toString().trim();
-//int togle = toggle.getCheckedButtonId();
-//if (togle)
+
         if (log.getVisibility() == View.VISIBLE && TextUtils.isEmpty(get_lon)) {
             log.setError("Longtude Required");
             return false;
@@ -156,11 +164,8 @@ public class BusinessAdressragment extends Fragment {
         }
 
 
-       /* if (taglinetext.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tLine)) {
-            taglinetext.setError("tagLine is  required.");
-            return false;
-        }*/
 
         return true;
 
-    }}
+    }
+}

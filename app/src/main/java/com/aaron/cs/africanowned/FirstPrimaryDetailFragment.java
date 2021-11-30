@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButton;
@@ -25,23 +26,30 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class FirstPrimaryDetailFragment extends Fragment  {
+public class FirstPrimaryDetailFragment extends Fragment implements FragmentManager.OnBackStackChangedListener {
 
     TextInputLayout taglinetext,dropdown,title;
     TextView errorMessage;
     MaterialButton nextbtn;
     CheckBox taglineCheck;
-    Spinner autocomplet;
+    String one;
+
+    private FragmentManager manager;
+
+    AutoCompleteTextView autocompletCat,autocomplet;
+    String item,counteryList;
     boolean isAllFieldsChecked = false;
     String tLine,lTitle;
 
-     Boolean isCountrySelected ;
+    Boolean isCountrySelected ;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        manager = getActivity().getSupportFragmentManager();
+        manager.addOnBackStackChangedListener(this);
 
     }
 
@@ -51,15 +59,9 @@ public class FirstPrimaryDetailFragment extends Fragment  {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first_primary_detail, container, false);
 
-        nextbtn = view.findViewById(R.id.next);
-        taglinetext = view.findViewById(R.id.tagline);
-        errorMessage=view.findViewById(R.id.tvInvisibleError);
-
-        title= view.findViewById(R.id.listingTitle);
-
-        taglinetext.setVisibility(View.GONE);
-        taglineCheck = view.findViewById(R.id.taglineCheck);
+        initViews(view);
 //On check box select it display the view
+        populateCategory(view);
         taglineCheck.setOnClickListener(view1 -> {
             if (taglineCheck.isChecked())
                 taglinetext.setVisibility(view1.getVisibility());
@@ -91,20 +93,27 @@ public class FirstPrimaryDetailFragment extends Fragment  {
         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the your spinner
         autocomplet.setAdapter(countryAdapter);
+        autocomplet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                counteryList=parent.getItemAtPosition(position).toString();
 
-      nextbtn.setOnClickListener( new View.OnClickListener() {
+            }
+        });
+
+        nextbtn.setOnClickListener( new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
-          //      isAllFieldsChecked = ValidateAllFields();
+                //      isAllFieldsChecked = ValidateAllFields();
                 if(ValidateAllFields())
-               {
+                {
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame, new BusinessAdressragment());
-                ft.addToBackStack(null);
-                ft.commit();}
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.frame, new BusinessAdressragment());
+                    ft.addToBackStack(one);
+                    ft.commit();}
             }
 
 
@@ -116,26 +125,52 @@ public class FirstPrimaryDetailFragment extends Fragment  {
 
     }
 
+    private void initViews(View view) {
+        nextbtn = view.findViewById(R.id.next);
+        taglinetext = view.findViewById(R.id.tagline);
+        autocompletCat = view.findViewById( R.id.category );
+        title= view.findViewById(R.id.listingTitle);
+        taglinetext.setVisibility(View.GONE);
+        taglineCheck = view.findViewById(R.id.taglineCheck);
+    }
+
+    private boolean validateCategory()
+    {
+
+        if ((item==null)){
+            Toast.makeText(getActivity(), "please select  Category", Toast.LENGTH_SHORT).show();
+            return false;
+
+
+        }
+        else return true;
+    }
+
     private boolean ValidateAllFields() {
 
 
         String tLine=taglinetext.getEditText().getText().toString().trim();
-      String lTitle=title.getEditText().getText().toString().trim();
-      //  autocomplet.setOnItemSelectedListener(this);
-        String counteryList = autocomplet.getSelectedItem().toString();
-        if (counteryList.equals("Afghanistan")) {
+        String lTitle=title.getEditText().getText().toString().trim();
+        //  autocomplet.setOnItemSelectedListener(this);
+
+        if (counteryList==null) {
             //errorMessage.setError("Countery required.");
 
             Toast.makeText(getActivity(), "please select  Countery", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if ((item==null)){
+            Toast.makeText(getActivity(), "please select  Category", Toast.LENGTH_SHORT).show();
+            return false;
 
+
+        }
 
         if (taglinetext.getVisibility() == View.VISIBLE && TextUtils.isEmpty(tLine))
         {
-        taglinetext.setError("tagLine is  required.");
-        return false;
-    }
+            taglinetext.setError("tagLine is  required.");
+            return false;
+        }
         if(TextUtils.isEmpty(lTitle)) {
             title.setError("List title is required.");
             return false;
@@ -145,5 +180,24 @@ public class FirstPrimaryDetailFragment extends Fragment  {
 
     }
 
+    private void populateCategory(View view) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( view.getContext(),
+                R.array.spin_catagory, android.R.layout.simple_list_item_1 );
+        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        autocompletCat.setAdapter( adapter );
+        autocompletCat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                item = parent.getItemAtPosition(position).toString();
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackStackChanged() {
+
+    }
 }
