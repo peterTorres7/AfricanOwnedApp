@@ -45,16 +45,12 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
-<<<<<<< HEAD
     implementation 'com.android.support:multidex:1.0.3'
-=======
     // Dependency FirebaseUI for Firebase Realtime Database
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
 
     // Dependency for Firebase REaltime Database
     implementation 'com.google.firebase:firebase-database:19.3.1'
-
->>>>>>> 00e2e345883ac974de0dab74198431b8af00b184
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-core:19.0.2'
 
