@@ -36,7 +36,13 @@ public class HomeFragment extends Fragment {
     DatabaseReference mBase;
     DatabaseReference yourRef;
     RecyclerViewBusinessAdapter adapter;
+
     List<String> businessNames;
+    List<String> aboutUs;
+    List<String> categoryNames;
+    List<String> hours;
+    List<String> locationNames;
+    List<String> websiteNames;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +53,11 @@ public class HomeFragment extends Fragment {
         // Add the following lines to create RecyclerView
         recyclerView = v.findViewById(R.id.recyclerview);
         businessNames = new ArrayList<>();
+        categoryNames = new ArrayList<>();
+        hours = new ArrayList<>();
+        locationNames = new ArrayList<>();
+        websiteNames = new ArrayList<>();
+        aboutUs = new ArrayList<>();
 
         mBase = FirebaseDatabase.getInstance().getReference();
         yourRef = mBase.child("companies");
@@ -55,8 +66,34 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren())
                 {
+
                     String companyName = ds.getKey();
                     businessNames.add(companyName);
+
+                    for(DataSnapshot dSnapshot : ds.getChildren())
+                    {
+                        Log.d("LOGGGING", dSnapshot.getKey());
+                        if(dSnapshot.getKey().equalsIgnoreCase("AboutUs"))
+                        {
+                            aboutUs.add(dSnapshot.getValue().toString());
+                        }
+                        if(dSnapshot.getKey().equalsIgnoreCase("catagory"))
+                        {
+                            categoryNames.add(dSnapshot.getValue().toString());
+                        }
+                        if(dSnapshot.getKey().equalsIgnoreCase("hours"))
+                        {
+                            hours.add(dSnapshot.getValue().toString());
+                        }
+                        if(dSnapshot.getKey().equalsIgnoreCase("location"))
+                        {
+                            locationNames.add(dSnapshot.getValue().toString());
+                        }
+                        if(dSnapshot.getKey().equalsIgnoreCase("website"))
+                        {
+                            websiteNames.add(dSnapshot.getValue().toString());
+                        }
+                    }
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -71,7 +108,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
 
-        adapter = new RecyclerViewBusinessAdapter(v.getContext(), businessNames);
+        adapter = new RecyclerViewBusinessAdapter(v.getContext(), businessNames, aboutUs, categoryNames, hours, locationNames, websiteNames);
         recyclerView.setAdapter(adapter);
         return v;
 

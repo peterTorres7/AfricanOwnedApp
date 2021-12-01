@@ -4,7 +4,10 @@ public class Business
 {
     private String businessName;
     private String category;
-    private String Location;
+    private String location;
+    private String hours;
+    private String website;
+
 
     public Business()
     {
@@ -28,10 +31,26 @@ public class Business
     }
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
     public void setLocation(String location) {
-        Location = location;
+        this.location = location;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 }
