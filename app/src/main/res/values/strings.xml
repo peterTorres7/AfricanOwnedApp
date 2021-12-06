@@ -16,7 +16,7 @@
     <string name="facebook_app_id">4572330199520192</string>
     <string name="fb_login_protocol_scheme">fb4572330199520192</string>
     <string-array name="spinner_country_choices">
-        <item>Deafult Choice</item>
+        <item>Agriculture</item>
         <item>USA</item>
         <item>item 2</item>
         <item>item 3</item>
@@ -43,6 +43,51 @@
         <item>Instagram</item>
 
     </string-array>
+
+    <string-array name="spin_countery">
+
+        <item>African American owned</item>
+        <item>African European owned</item>
+        <item>Algerian owned</item>
+        <item>Angola owned</item>
+        <item>Basothon owned</item>
+        <item>Batswana owned</item>
+        <item>Beninese owned</item>
+        <item>Black British owned</item>
+        <item>Black European owned</item>
+        <item>Black owned</item>
+        <item>Burkinabe owned</item>
+        <item>Cameroonian owned</item>
+        <item>Caribbean owned </item> <item>Central African owned</item>
+        <item>Chadian owned</item> <item>Congolese owned</item>
+        <item>Djibouti owned</item>v <item>East African owned</item>
+        <item>Egypt owned</item>
+        <item>Equatorial Guinean owned</item>
+        <item>Ethipian owned</item> <item> Gabonese owned </item>
+        <item>Gambian owned</item> <item>Guinea-Bissauan owned</item>
+        <item>Kenyan owned</item> <item>Libyan owned</item>
+        <item>Malian owned</item>
+        <item>Mauritanian owned</item>
+        <item>Mozambican owned </item> <item>Moroccan owned</item>
+        <item>Namibian owned</item>
+        <item>Nigerian owned</item>
+
+        <item>North African  owned</item>
+        <item>Rwandan owned</item>
+        <item>Senegales owned</item>
+        <item>Seychellois owned</item>
+        <item>Sierra Leonean  owned</item>
+        <item>South Afssrican owned</item>
+        <item>Somalian  owned</item>
+        <item>South Sudanese  owned</item>
+        <item>Tanzanian owned</item>
+        <item>Togoese owned</item>
+        <item>Tunisian owned</item>
+        <item>Ugandan owned</item>
+
+        <item>West African owned</item>
+        <item>Zimbabwean owned</item>
+          </string-array>
     <string-array name="begningHours">
         <item>Select Start Hr</item>
         <item>12:00 AM</item>
@@ -99,14 +144,31 @@
         <item>09:00 AM</item>
     </string-array>
 
-
     <string-array name="spin_catagory">
-        <item>Deafult Choice</item>
-        <item>item 1</item>
-        <item>item 2</item>
-        <item>item 3</item>
-        <item>item 4</item>
-        <item>item 5</item>
+        <item>Agriculture</item>
+        <item>Barbers</item>
+        <item>Beauty</item>
+        <item>Car Rental</item>
+        <item>Childcare</item>
+        <item>Classes</item>
+        <item>Clubs</item>
+        <item>Construction</item>
+        <item>Consulting </item>
+        <item>Creative</item>
+        <item>-Art</item>
+        <item>-Fabrics</item>
+        <item>Crowdfunding</item>
+        <item>DJ</item>
+        <item>Ecommerce</item>
+        <item>Education</item>
+        <item>Electroncis</item>
+        <item>Entertainment</item>
+        <item>Export</item>
+        <item>Fabrics</item>
+        <item>Farming</item>
+        <item>Food Delivery</item>
+        <item>Gaming</item>
+        <item>Hairstylist</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -178,7 +240,7 @@
     <string name="city">city</string>
 
     <string name="city2">City</string>
-    <string name="adress">Adress</string>
+    <string name="adress">Address</string>
     <string name="address3">Address</string>
     <string name="detail_description_about_your_listing2">Detail description about your listing</string>
     <string name="more_information_text">More Information</string>

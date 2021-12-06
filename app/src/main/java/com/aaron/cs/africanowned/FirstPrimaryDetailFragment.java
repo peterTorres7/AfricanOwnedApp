@@ -62,6 +62,7 @@ public class FirstPrimaryDetailFragment extends Fragment implements FragmentMana
         initViews(view);
 //On check box select it display the view
         populateCategory(view);
+        populateCountery(view);
         taglineCheck.setOnClickListener(view1 -> {
             if (taglineCheck.isChecked())
                 taglinetext.setVisibility(view1.getVisibility());
@@ -70,11 +71,9 @@ public class FirstPrimaryDetailFragment extends Fragment implements FragmentMana
         });
 
         //Create dropdown list for countery
-        dropdown=view.findViewById( R.id.textInputLayout2 );
 
-        autocomplet=view.findViewById( R.id.countery );
 
-        Locale[] listofCountery = Locale.getAvailableLocales();
+      /*  Locale[] listofCountery = Locale.getAvailableLocales();
         ArrayList<String> countries = new ArrayList<>();
         for (Locale locale : listofCountery) {
             String country = locale.getDisplayCountry();
@@ -99,7 +98,7 @@ public class FirstPrimaryDetailFragment extends Fragment implements FragmentMana
                 counteryList=parent.getItemAtPosition(position).toString();
 
             }
-        });
+        });*/
 
         nextbtn.setOnClickListener( new View.OnClickListener() {
 
@@ -129,6 +128,9 @@ public class FirstPrimaryDetailFragment extends Fragment implements FragmentMana
         nextbtn = view.findViewById(R.id.next);
         taglinetext = view.findViewById(R.id.tagline);
         autocompletCat = view.findViewById( R.id.category );
+        dropdown=view.findViewById( R.id.textInputLayout2 );
+
+        autocomplet=view.findViewById( R.id.countery );
         title= view.findViewById(R.id.listingTitle);
         taglinetext.setVisibility(View.GONE);
         taglineCheck = view.findViewById(R.id.taglineCheck);
@@ -177,6 +179,21 @@ public class FirstPrimaryDetailFragment extends Fragment implements FragmentMana
         }
 
         return true;
+
+    }
+    private void populateCountery(View view) {
+        ArrayAdapter<CharSequence> counteryadapter = ArrayAdapter.createFromResource( view.getContext(),
+                R.array.spin_countery, android.R.layout.simple_list_item_1 );
+        counteryadapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        autocomplet.setAdapter( counteryadapter );
+        autocomplet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                counteryList = parent.getItemAtPosition(position).toString();
+
+            }
+        });
 
     }
 
