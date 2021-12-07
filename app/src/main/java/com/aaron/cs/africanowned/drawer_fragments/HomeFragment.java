@@ -43,6 +43,8 @@ public class HomeFragment extends Fragment {
     List<String> hours;
     List<String> locationNames;
     List<String> websiteNames;
+    List<Boolean> verified;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +59,9 @@ public class HomeFragment extends Fragment {
         hours = new ArrayList<>();
         locationNames = new ArrayList<>();
         websiteNames = new ArrayList<>();
+        verified = new ArrayList<>();
         aboutUs = new ArrayList<>();
+
 
         mBase = FirebaseDatabase.getInstance().getReference();
         yourRef = mBase.child("companies");
@@ -89,6 +93,10 @@ public class HomeFragment extends Fragment {
                         {
                             locationNames.add(dSnapshot.getValue().toString());
                         }
+                        if(dSnapshot.getKey().equalsIgnoreCase("verified"))
+                        {
+                            verified.add(Boolean.parseBoolean(dSnapshot.getValue().toString()));
+                        }
                         if(dSnapshot.getKey().equalsIgnoreCase("website"))
                         {
                             websiteNames.add(dSnapshot.getValue().toString());
@@ -108,8 +116,10 @@ public class HomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
 
-        adapter = new RecyclerViewBusinessAdapter(v.getContext(), businessNames, aboutUs, categoryNames, hours, locationNames, websiteNames);
+        adapter = new RecyclerViewBusinessAdapter(v.getContext(), businessNames, aboutUs, categoryNames, hours, locationNames, websiteNames, verified);
         recyclerView.setAdapter(adapter);
+
+
         return v;
 
     }
