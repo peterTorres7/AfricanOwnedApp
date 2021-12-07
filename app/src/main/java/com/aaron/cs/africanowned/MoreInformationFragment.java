@@ -44,10 +44,10 @@ public class MoreInformationFragment extends Fragment {
                     tags.setError("Tags  is required.");
                     return;
                 }
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
+             /*   FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame, new FirstPrimaryDetailFragment());
                 ft.addToBackStack(null);
-                ft.commit();
+                ft.commit();*/
                 //      }
             }
         });
