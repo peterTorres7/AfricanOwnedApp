@@ -23,10 +23,11 @@ public class RecyclerViewBusinessAdapter extends RecyclerView.Adapter<RecyclerVi
     static List<String> hours;
     static List<String> locationNames;
     static List<String> websiteNames;
+    static List<Boolean> verified;
 
     public RecyclerViewBusinessAdapter(Context context, List<String> businesses, List<String> aboutUs,
                                        List<String> categoryNames, List<String> hours, List<String> locationNames,
-                                       List<String> websiteNames) {
+                                       List<String> websiteNames, List<Boolean> verified) {
         inflater = LayoutInflater.from(context);
         this.context = context;
         this.businesses=businesses;
@@ -35,6 +36,7 @@ public class RecyclerViewBusinessAdapter extends RecyclerView.Adapter<RecyclerVi
         this.hours = hours;
         this.locationNames = locationNames;
         this.websiteNames = websiteNames;
+        this.verified = verified;
     }
 
     @Override
@@ -46,12 +48,13 @@ public class RecyclerViewBusinessAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.businessName.setText(businesses.get(position));
+
+        if(verified.get(position))
+        {
+            holder.businessName.setText(businesses.get(position));
 
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            holder.itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), BusinessInformation.class);
 
                 intent.putExtra("BusinessName", businesses.get(position));
@@ -61,8 +64,8 @@ public class RecyclerViewBusinessAdapter extends RecyclerView.Adapter<RecyclerVi
                 intent.putExtra("Hours", hours.get(position));
                 intent.putExtra("website", websiteNames.get(position));
                 context.startActivity(intent);
-            }
-        });
+            });
+        }
     }
 
     @Override

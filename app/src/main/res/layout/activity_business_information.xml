@@ -19,12 +19,13 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="165dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fui_idp_button_background_anonymous" />
+        app:srcCompat="@drawable/background" />
 
     <TextView
         android:id="@+id/companyName"

@@ -106,12 +106,7 @@ public class LogIn extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        googleSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
+        googleSignInButton.setOnClickListener(v -> signIn());
 
         uLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +133,10 @@ public class LogIn extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
+                        if(task.isSuccessful() && email.equals("africanowneddev@gmail.com") && password.equals("@frican0wnedDev")) {
+                            Toast.makeText(LogIn.this, "Logged in!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), AdminActivity.class));
+                        }  else if(task.isSuccessful()){
                             Toast.makeText(LogIn.this, "Logged in!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {

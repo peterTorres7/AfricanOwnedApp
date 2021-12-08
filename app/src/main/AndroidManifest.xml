@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AfricanOwned">
-        <activity android:name=".BusinessInformation"></activity>
+        <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".BusinessInformation" />
         <activity
             android:name=".LogIn"
             android:exported="true">
@@ -26,14 +27,8 @@
         </activity>
         <activity
             android:name=".SignUp"
-            android:exported="false"></activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
+        <activity android:name=".MainActivity"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
