@@ -1,5 +1,5 @@
 # AfricanOwnedApp
-Just a hello world application... for now
+... for now
 
 [![<ORG_NAME>](https://circleci.com/gh/aaronallenCS/AfricanOwnedApp.svg?style=svg)](https://app.circleci.com/pipelines/github/aaronallenCS/AfricanOwnedApp?branch=master)
 
